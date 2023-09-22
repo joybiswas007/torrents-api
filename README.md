@@ -1,12 +1,10 @@
 # Torrents API
-A Telegram bot created in Node.js using the APIs to do various tasks.
-
-## Requirements
 A collection of bunch of public trackers api;
 
 ## WIP
 Lots of more public trackers api will be added soon; Feel free to send pull requests;
 
+## Requirements
 Navigate to the cloned directory
 
 Install dependencies: ``` npm install ```
