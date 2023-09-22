@@ -17,9 +17,16 @@ Example `.env` file:
 PORT=PORTNUMBER //IF NO port is set then default port is 10000;
 _1337x=https://1337x.to/srch?search=
 _1337X_URL=https://1337x.to
+BITSEARCH=https://bitsearch.to/search?q=
 
 ```
 
 ## Usage
-To run the api, use the following command: ``` npm run dev ```
-and navigate to url : `http:(s)//localhost:10000/torrents/api/v1/1337x`
+To run the api locally, use the following command: ``` npm run dev ```
+
+## Available routes
+```
+http://localhost:10000/torrents/api/v1/1337x<br>
+http://localhost:10000/torrents/api/v1/bitsearch
+
+```

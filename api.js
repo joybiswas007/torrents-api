@@ -6,9 +6,11 @@ app.use(express.json());
 
 //Import routes
 const _1337x = require("./routes/_1337x");
+const bitsearch = require("./routes/bitsearch");
 
 //Use routes
 app.use("/torrents/api/v1/1337x", _1337x);
+app.use("/torrents/api/v1/bitsearch", bitsearch);
 
 app.get("*", (req, res) => {
   res.status(405).send(`${req.method} Method NOT Allowed!`);
