@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
     //If search page has less than or equal 20 torrents then it'll look for first page only
     if(stats <= 20){
       totalPage = 1;
-      //else search result is more 20 two then divide the total result by 20 and get the total pagination
+      //else search result is more than 20 then divide the total result by 20 and get the total pagination
     } else {
       totalPage = Math.floor(stats / 20);
     }
@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
       for (let i = 0; i < $search.length; i++) {
         const torrent = $search[i];
         const torrent_name = $(torrent).find("h5").text().trim();
+        const magnet = $(torrent).find(".links a.dl-magnet").attr("href");
         const size = $(torrent).find('img[alt="Size"]').parent().text().trim();
         const seeders = $(torrent)
           .find('img[alt="Seeder"]')
@@ -46,6 +47,7 @@ router.post("/", async (req, res) => {
           .trim();
         torrents.push({
           torrent_name,
+          magnet,
           size,
           seeders,
           leechers,
