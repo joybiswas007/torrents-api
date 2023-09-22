@@ -26,7 +26,6 @@ To run the api locally, use the following command: ``` npm run dev ```
 
 ## Available routes
 ```
-http://localhost:10000/torrents/api/v1/1337x<br>
+http://localhost:10000/torrents/api/v1/1337x
 http://localhost:10000/torrents/api/v1/bitsearch
-
 ```
