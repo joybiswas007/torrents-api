@@ -6,7 +6,7 @@ const cheerio = require("cheerio");
 router.post("/", async (req, res) => {
   const { search } = req.body;
   try {
-    const search_url = `${process.env.BITSEARCH}${search}`;
+    const search_url = `${process.env.BITSEARCH}/search?q=${search}`;
     const response = await axios.get(search_url);
     const $ = cheerio.load(response.data);
 
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     let totalPage;
 
     //If search page has less than or equal 20 torrents then it'll look for first page only
-    if(stats <= 20){
+    if (stats <= 20) {
       totalPage = 1;
       //else search result is more than 20 then divide the total result by 20 and get the total pagination
     } else {
@@ -53,14 +53,14 @@ router.post("/", async (req, res) => {
           leechers,
         });
       }
-    } 
+    }
     if (torrents.length > 0) {
       res.status(202).send(torrents);
     } else {
       res.status(404).send("NO Torrent(s) found :-/");
     }
   } catch (error) {
-    res.status(500).send(error.errors);
+    res.status(500).send({ error: "undefined" });
   }
 });
 

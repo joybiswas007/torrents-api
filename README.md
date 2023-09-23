@@ -2,6 +2,7 @@
 A collection of bunch of public trackers api;
 
 ## WIP
+Added Knaben but need to be fix other than that all routes work fine;
 Lots of more public trackers api will be added soon; Feel free to send pull requests;
 
 ## Requirements
@@ -15,9 +16,9 @@ Example `.env` file:
 
 ```
 PORT=PORTNUMBER //IF NO port is set then default port is 10000;
-_1337x=https://1337x.to/srch?search=
-_1337X_URL=https://1337x.to
-BITSEARCH=https://bitsearch.to/search?q=
+_1337X=https://1337x.to
+BITSEARCH=https://bitsearch.to
+TOR_LOCK=https://www.torlock.com
 
 ```
 
@@ -28,4 +29,6 @@ To run the api locally, use the following command: ``` npm run dev ```
 ```
 http://localhost:10000/torrents/api/v1/1337x
 http://localhost:10000/torrents/api/v1/bitsearch
+http://localhost:10000/torrents/api/v1/torlock
+http://localhost:10000/torrents/api/v1/knaben
 ```

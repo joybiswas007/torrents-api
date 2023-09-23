@@ -5,8 +5,9 @@ const cheerio = require("cheerio");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
+  const _1337X = process.env._1337x;
   try {
-    const search_url = `${process.env._1337x}${search}`;
+    const search_url = `${_1337X}/srch?search=${search}`;
     const response = await axios.get(search_url);
     const $ = cheerio.load(response.data);
 
@@ -21,7 +22,7 @@ router.post("/", async (req, res) => {
     let torrents = [];
 
     for (let page = 1; page <= totalPages; page++) {
-      const pageUrl = `${process.env._1337X_URL}/search/${search}/${page}/`;
+      const pageUrl = `${_1337X}/search/${search}/${page}/`;
       const pageResponse = await axios.get(pageUrl);
       const $page = cheerio.load(pageResponse.data);
       const $torrent_table = $page(".table-list tbody tr");
@@ -29,7 +30,7 @@ router.post("/", async (req, res) => {
       for (let i = 0; i < $torrent_table.length; i++) {
         const tr = $torrent_table[i];
         const torrent_name = $(tr).find(".coll-1.name a").last().text().trim();
-        const url = `${process.env._1337X_URL}${$(tr)
+        const url = `${_1337X}${$(tr)
           .find(".coll-1.name a")
           .last()
           .attr("href")}`;
@@ -64,8 +65,7 @@ router.post("/", async (req, res) => {
       res.status(404).send("No Torrent(s) Found!");
     }
   } catch (error) {
-    console.log(error.error);
-    res.status(500).send(error.errors);
+    res.status(500).send({ error: "undefined" });
   }
 });
 
