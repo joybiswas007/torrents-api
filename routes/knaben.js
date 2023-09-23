@@ -25,7 +25,11 @@ router.post("/", async (req, res) => {
         leechers,
       });
     }
-    res.send(torrents);
+    if (torrents.length > 0) {
+      res.status(202).send(torrents);
+    } else {
+      res.status(404).send("NO Torrent(s) found :-/");
+    }
   } catch (error) {
     res.status(500).send({ error: "undefined" });
   }
