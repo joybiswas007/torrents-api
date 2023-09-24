@@ -10,7 +10,8 @@
   "main": "api.js",
   "scripts": {
     "start": "node api.js",
-    "dev": "nodemon api.js"
+    "dev": "nodemon api.js",
+    "deploy": "pm2 start api.js --watch --name torrents-api"
   },
   "keywords": [],
   "author": "",

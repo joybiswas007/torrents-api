@@ -51,7 +51,7 @@ Example `.env` file:
 ```
 PORT=PORTNUMBER //IF NO port is set then default port is 10000
 ONE337X=https://1337x.to
-BITSEARCH=https://bitsearch.to
+BIT_SEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
 KNABEN=https://knaben.eu
 TORRENT_GALAXY=https://tgx.rs

@@ -7,7 +7,12 @@ router.post("/", async (req, res) => {
   const PC_GAMES_TORRENTS = process.env.PC_GAMES_TORRENTS;
   try {
     const search_url = `${PC_GAMES_TORRENTS}/?s=${search}`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+      },
+    });
     const $ = cheerio.load(response.data);
     const $element = $("main");
     let torrents = [];

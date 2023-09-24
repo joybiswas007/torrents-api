@@ -4,9 +4,15 @@ const cheerio = require("cheerio");
 
 router.post("/", async (req, res) => {
   const { search, mode } = req.body;
+  const KNABEN = process.env.KNABEN;
   try {
-    const search_url = `${process.env.KNABEN}/search/index.php?cat=000000000&q=${search}&search=${mode}`;
-    const response = await axios.get(search_url);
+    const search_url = `${KNABEN}/search/index.php?cat=000000000&q=${search}&search=${mode}`;
+    const response = await axios.get(search_url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+      },
+    });
     const $ = cheerio.load(response.data);
     const $element = $(".table tbody");
     let torrents = [];

@@ -7,7 +7,12 @@ router.post("/", async (req, res) => {
   const ONE337X = process.env.ONE337X;
   try {
     const search_url = `${ONE337X}/srch?search=${search}`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+      },
+    });
     const $ = cheerio.load(response.data);
     let torrents = [];
     const $torrent_table = $(".table-list tbody tr");
@@ -21,7 +26,11 @@ router.post("/", async (req, res) => {
         .attr("href")}`;
       const Seeders = $(tr).find(".coll-2.seeds").text().trim();
       const Leechers = $(tr).find(".coll-3.leeches").text().trim();
-      const Size = $(tr).find(".coll-4.size").text().trim().replace(Seeders, "");
+      const Size = $(tr)
+        .find(".coll-4.size")
+        .text()
+        .trim()
+        .replace(Seeders, "");
 
       const $magnet_url = await axios.get(url);
       const $magnet_data = cheerio.load($magnet_url.data);

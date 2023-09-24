@@ -3,11 +3,16 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 router.post("/", async (req, res) => {
-  const TG = process.env.TORRENT_GALAXY;
   const { search } = req.body;
+  const TORRENT_GALAXY = process.env.TORRENT_GALAXY;
   try {
-    const search_url = `${TG}/torrents.php?search=${search}`;
-    const response = await axios.get(search_url);
+    const search_url = `${TORRENT_GALAXY}/torrents.php?search=${search}`;
+    const response = await axios.get(search_url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+      },
+    });
     const $ = cheerio.load(response.data);
     const torrent_table = $(".tgxtable");
     let torrents = [];
