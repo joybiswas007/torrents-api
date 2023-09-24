@@ -13,22 +13,22 @@ router.post("/", async (req, res) => {
     let torrents = [];
     for (const torrent of torrent_table.find(".tgxtablerow")) {
       const torrent_name = $(torrent).find("a").eq(1).text().trim();
-      const magnet = $(torrent).find('a[href^="magnet:"]').attr("href");
-      const size = $(torrent)
+      const Magnet = $(torrent).find('a[href^="magnet:"]').attr("href");
+      const Size = $(torrent)
         .find("table tbody tr td span")
         .eq(2)
         .text()
         .trim();
       const SL = $(torrent).find("table tbody tr td").eq(3);
-      const seeders = $(SL).find("b").eq(0).text().trim();
-      const leechers = $(SL).find("b").eq(1).text().trim();
+      const Seeders = $(SL).find("b").eq(0).text().trim();
+      const Leechers = $(SL).find("b").eq(1).text().trim();
 
       torrents.push({
-        torrent_name,
-        magnet,
-        size,
-        seeders,
-        leechers,
+        Name: torrent_name,
+        Magnet,
+        Size,
+        Seeders,
+        Leechers,
       });
     }
     if (torrents.length > 0) {

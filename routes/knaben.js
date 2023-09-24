@@ -12,16 +12,16 @@ router.post("/", async (req, res) => {
     let torrents = [];
     for (const torrent of Array.from($element.find("tr"))) {
       const torrent_name = $(torrent).find(".text-wrap a").text().trim();
-      const magnet = $(torrent).find(".text-wrap a").attr("href");
-      const size = $(torrent).find(".text-nowrap td").eq(2).text();
-      const seeders = $(torrent).find(".text-nowrap td").eq(4).text();
-      const leechers = $(torrent).find(".text-nowrap td").eq(5).text();
+      const Magnet = $(torrent).find(".text-wrap a").attr("href");
+      const Size = $(torrent).find(".text-nowrap td").eq(2).text();
+      const Seeders = $(torrent).find(".text-nowrap td").eq(4).text();
+      const Leechers = $(torrent).find(".text-nowrap td").eq(5).text();
       torrents.push({
-        torrent_name,
-        magnet,
-        size,
-        seeders,
-        leechers,
+        Name: torrent_name,
+        Magnet,
+        Size,
+        Seeders,
+        Leechers,
       });
     }
     if (torrents.length > 0) {

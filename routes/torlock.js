@@ -17,21 +17,21 @@ router.post("/", async (req, res) => {
       const link = $(element).find("a").attr("href");
       const torrent_link = `${TOR_LOCK}${link}`;
       const torrent_name = $(element).find("a b").text();
-      const size = $(element).find(".ts").text();
-      const seeders = $(element).find(".tul").text();
-      const leechers = $(element).find(".tdl").text();
+      const Size = $(element).find(".ts").text();
+      const Seeders = $(element).find(".tul").text();
+      const Leechers = $(element).find(".tdl").text();
 
       //Visit every torrent link and fetch magnet link
       const $magnet_link = await axios.get(torrent_link);
       const $magnet = cheerio.load($magnet_link.data);
-      const magnet = $magnet("h4 a").eq(0).attr("href");
+      const Magnet = $magnet("h4 a").eq(0).attr("href");
 
       torrents.push({
-        torrent_name,
-        magnet,
-        size,
-        seeders,
-        leechers,
+        Name: torrent_name,
+        Magnet,
+        Size,
+        Seeders,
+        Leechers,
       });
     }
     if (torrents.length > 0) {

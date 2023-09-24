@@ -9,6 +9,7 @@ http://localhost:10000/torrents/api/v1/bitsearch
 http://localhost:10000/torrents/api/v1/torlock
 http://localhost:10000/torrents/api/v1/knaben
 http://localhost:10000/torrents/api/v1/torrentgalaxy
+http://localhost:10000/torrents/api/v1/pcgamestorrents
 ```
 ## Usage
 And request method must be `POST`. and request body should be like this:
@@ -31,6 +32,10 @@ well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
 
 On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query.
+
+pctorrentsgames api endpoint gives magnet link download page url
+cause the cheerio can't click on buttons and that site use ads you
+need to grab magnet link manually from the link.
 ```
 
 ## Requirements
@@ -50,7 +55,7 @@ BITSEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
 KNABEN=https://knaben.eu
 TORRENT_GALAXY=https://tgx.rs
-
+PC_GAMES_TORRENTS=https://pcgamestorrents.com
 ```
 
 ### Start server
