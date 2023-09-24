@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     let torrents = [];
     for (const torrent of torrent_table.find(".tgxtablerow")) {
       const torrent_name = $(torrent).find("a").eq(1).text().trim();
-      const magnet = $(torrent).find("a").eq(4).attr("href");
+      const magnet = $(torrent).find('a[href^="magnet:"]').attr("href");
       const size = $(torrent)
         .find("table tbody tr td span")
         .eq(2)

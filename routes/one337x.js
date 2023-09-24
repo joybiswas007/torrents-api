@@ -4,9 +4,9 @@ const cheerio = require("cheerio");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const _1337X = process.env._1337x;
+  const ONE337X = process.env.ONE337X;
   try {
-    const search_url = `${_1337X}/srch?search=${search}`;
+    const search_url = `${ONE337X}/srch?search=${search}`;
     const response = await axios.get(search_url);
     const $ = cheerio.load(response.data);
 
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     let torrents = [];
 
     for (let page = 1; page <= totalPages; page++) {
-      const pageUrl = `${_1337X}/search/${search}/${page}/`;
+      const pageUrl = `${ONE337X}/search/${search}/${page}/`;
       const pageResponse = await axios.get(pageUrl);
       const $page = cheerio.load(pageResponse.data);
       const $torrent_table = $page(".table-list tbody tr");
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
       for (let i = 0; i < $torrent_table.length; i++) {
         const tr = $torrent_table[i];
         const torrent_name = $(tr).find(".coll-1.name a").last().text().trim();
-        const url = `${_1337X}${$(tr)
+        const url = `${ONE337X}${$(tr)
           .find(".coll-1.name a")
           .last()
           .attr("href")}`;
