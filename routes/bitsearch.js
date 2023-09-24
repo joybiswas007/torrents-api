@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -57,10 +56,10 @@ router.post("/", async (req, res) => {
     if (torrents.length > 0) {
       res.status(202).send(torrents);
     } else {
-      res.status(404).send("NO Torrent(s) found :-/");
+      res.status(404).send("No magnets found :(");
     }
   } catch (error) {
-    res.status(500).send({ error: "undefined" });
+    res.status(500).send({ error: "Something went wrong. Please try again!" });
   }
 });
 

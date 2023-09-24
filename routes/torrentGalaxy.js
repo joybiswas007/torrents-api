@@ -3,19 +3,26 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 router.post("/", async (req, res) => {
-  const { search, mode } = req.body;
+  const TG = process.env.TORRENT_GALAXY;
+  const { search } = req.body;
   try {
-    const search_url = `${process.env.KNABEN}/search/index.php?cat=000000000&q=${search}&search=${mode}`;
+    const search_url = `${TG}/torrents.php?search=${search}`;
     const response = await axios.get(search_url);
     const $ = cheerio.load(response.data);
-    const $element = $(".table tbody");
+    const torrent_table = $(".tgxtable");
     let torrents = [];
-    for (const torrent of Array.from($element.find("tr"))) {
-      const torrent_name = $(torrent).find(".text-wrap a").text().trim();
-      const magnet = $(torrent).find(".text-wrap a").attr("href");
-      const size = $(torrent).find(".text-nowrap td").eq(2).text();
-      const seeders = $(torrent).find(".text-nowrap td").eq(4).text();
-      const leechers = $(torrent).find(".text-nowrap td").eq(5).text();
+    for (const torrent of torrent_table.find(".tgxtablerow")) {
+      const torrent_name = $(torrent).find("a").eq(1).text().trim();
+      const magnet = $(torrent).find("a").eq(4).attr("href");
+      const size = $(torrent)
+        .find("table tbody tr td span")
+        .eq(2)
+        .text()
+        .trim();
+      const SL = $(torrent).find("table tbody tr td").eq(3);
+      const seeders = $(SL).find("b").eq(0).text().trim();
+      const leechers = $(SL).find("b").eq(1).text().trim();
+
       torrents.push({
         torrent_name,
         magnet,

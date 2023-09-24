@@ -21,6 +21,7 @@ _1337X=https://1337x.to
 BITSEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
 KNABEN=https://knaben.eu
+TORRENT_GALAXY=https://tgx.rs
 
 ```
 
@@ -43,7 +44,9 @@ Knaben route takes two properties
 }
 
 Between Fast and Live mode try it out :p
-and when searching on knaben on few search results you'll see `https://knaben.eu/live/dl/rutracker/?` this types of links well fret NOT just add them to your client and it'll automatically starts downloading like other magnet urls;
+and when searching on knaben on few search results you'll see <br> `https://knaben.eu/live/dl/rutracker/?` this types of links <br> well fret NOT just add them to your client and it'll automatically starts downloading <br> like other magnet urls;
+
+On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query;
 
 ```
 
@@ -54,4 +57,5 @@ http://localhost:10000/torrents/api/v1/1337x
 http://localhost:10000/torrents/api/v1/bitsearch
 http://localhost:10000/torrents/api/v1/torlock
 http://localhost:10000/torrents/api/v1/knaben
+http://localhost:10000/torrents/api/v1/torrentgalaxy
 ```
