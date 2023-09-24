@@ -1,9 +1,37 @@
-# Torrents API
-A collection of public torrents trackers API written in JavaScript;
+## Torrents API
+A collection of public torrents trackers API written in JavaScript.
 
-## WIP
+## Available routes
 
-Lots of more public trackers api will be added soon; Feel free to send pull requests;
+```
+http://localhost:10000/torrents/api/v1/1337x
+http://localhost:10000/torrents/api/v1/bitsearch
+http://localhost:10000/torrents/api/v1/torlock
+http://localhost:10000/torrents/api/v1/knaben
+http://localhost:10000/torrents/api/v1/torrentgalaxy
+```
+## Usage
+And request method must be `POST`. and request body should be like this:
+
+```
+{
+    "search": "search query"
+}
+
+Knaben route payload example: 
+
+{
+    "search": "search query",
+    "mode: "fast" or "live"
+}
+Between Fast and Live mode try it out :p
+And when searching on knaben on few search results you'll see 
+`https://knaben.eu/live/dl/rutracker/?` this types of links 
+well fret NOT just add them to your client and it'll automatically 
+starts downloading like other magnet urls.
+
+On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query.
+```
 
 ## Requirements
 
@@ -16,7 +44,7 @@ Create a `.env` file inside the directory and fill in all the details.
 Example `.env` file:
 
 ```
-PORT=PORTNUMBER //IF NO port is set then default port is 10000;
+PORT=PORTNUMBER //IF NO port is set then default port is 10000
 _1337X=https://1337x.to
 BITSEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
@@ -25,37 +53,14 @@ TORRENT_GALAXY=https://tgx.rs
 
 ```
 
-## Usage
+### Start server
+To run the server locally, use the following command: `npm run dev`
 
-To run the api locally, use the following command: `npm run dev`
-And request method must be POST; and request body should be like this:
+## Contributing
 
-```
-{
-    "search": "search query"
-}
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-http://localhost:10000/torrents/api/v1/knaben
-Knaben route takes two properties
+Please make sure to update tests as appropriate.
 
-{
-    "search": "search query",
-    "mode: "fast" or "live"
-}
-
-Between Fast and Live mode try it out :p
-and when searching on knaben on few search results you'll see <br> `https://knaben.eu/live/dl/rutracker/?` this types of links <br> well fret NOT just add them to your client and it'll automatically starts downloading <br> like other magnet urls;
-
-On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query;
-
-```
-
-## Available routes
-
-```
-http://localhost:10000/torrents/api/v1/1337x
-http://localhost:10000/torrents/api/v1/bitsearch
-http://localhost:10000/torrents/api/v1/torlock
-http://localhost:10000/torrents/api/v1/knaben
-http://localhost:10000/torrents/api/v1/torrentgalaxy
-```
+Show your support by [⭐️](https://github.com/joybiswas007/torrents-api/stargazers) this project! 
