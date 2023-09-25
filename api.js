@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const port = process.env.port || 10000;
+const port = process.env.PORT || 10000;
 app.use(express.json());
 
 //Import routes

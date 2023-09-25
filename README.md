@@ -54,7 +54,7 @@ Create a `.env` file inside the directory and fill in all the details.
 Example `.env` file:
 
 ```
-PORT=PORTNUMBER //IF NO port is set then default port is 10000
+PORT=PORT //IF NO port is set then default port is 10000
 ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
