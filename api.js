@@ -11,6 +11,7 @@ const knaben = require("./routes/knaben");
 const torlock = require("./routes/torlock");
 const torrentGalaxy = require("./routes/torrentGalaxy");
 const pcGamesTorrents = require("./routes/pcGamesTorrents");
+const zooqle = require("./routes/zooqle");
 
 //Use routes
 app.use("/torrents/api/v1/1337x", one337x);
@@ -19,6 +20,7 @@ app.use("/torrents/api/v1/knaben", knaben);
 app.use("/torrents/api/v1/torlock", torlock);
 app.use("/torrents/api/v1/torrentgalaxy", torrentGalaxy);
 app.use("/torrents/api/v1/pcgamestorrents", pcGamesTorrents);
+app.use("/torrents/api/v1/zooqle", zooqle);
 
 app.get("*", (req, res) => {
   res.status(405).send(`${req.method} Method NOT allowed!`);

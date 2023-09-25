@@ -10,6 +10,7 @@ http://localhost:10000/torrents/api/v1/torlock
 http://localhost:10000/torrents/api/v1/knaben
 http://localhost:10000/torrents/api/v1/torrentgalaxy
 http://localhost:10000/torrents/api/v1/pcgamestorrents
+http://localhost:10000/torrents/api/v1/zooqle
 ```
 ## Usage
 And request method must be `POST`. and request body should be like this:
@@ -26,6 +27,7 @@ Knaben route payload example:
     "mode: "fast" or "live"
 }
 Between Fast and Live mode try it out :p
+```
 And when searching on knaben on few search results you'll see 
 `https://knaben.eu/live/dl/rutracker/?` this types of links 
 well fret NOT just add them to your client and it'll automatically 
@@ -36,7 +38,6 @@ On the TorrentGalaxy api endpoint you can search query via imdb id or or regular
 pctorrentsgames api endpoint gives magnet link download page url
 cause the cheerio can't click on buttons and that site use ads you
 need to grab magnet link manually from the link.
-```
 
 ## Requirements
 
@@ -56,6 +57,7 @@ TOR_LOCK=https://www.torlock.com
 KNABEN=https://knaben.eu
 TORRENT_GALAXY=https://tgx.rs
 PC_GAMES_TORRENTS=https://pcgamestorrents.com
+ZOOQLE=https://zooqle.xyz
 ```
 
 ### Start server
