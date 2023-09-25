@@ -12,6 +12,7 @@ http://localhost:10000/torrents/api/v1/torrentgalaxy
 http://localhost:10000/torrents/api/v1/pcgamestorrents
 http://localhost:10000/torrents/api/v1/zooqle
 http://localhost:10000/torrents/api/v1/magnetdl
+http://localhost:10000/torrents/api/v1/kickasstorrents
 
 ```
 ## Usage
@@ -61,6 +62,7 @@ TORRENT_GALAXY=https://tgx.rs
 PC_GAMES_TORRENTS=https://pcgamestorrents.com
 ZOOQLE=https://zooqle.xyz
 MAGNET_DL=https://www.magnetdl.com
+KICKASS=https://kickasstorrents.to
 ```
 
 ### Start server
