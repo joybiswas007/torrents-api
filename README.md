@@ -1,5 +1,5 @@
 ## Torrents API
-A collection of public torrents trackers API written in JavaScript.
+Unofficial public torrent trackers Api written in Expressjs.
 
 ## Available routes
 
@@ -13,6 +13,7 @@ http://localhost:10000/torrents/api/v1/pcgamestorrents
 http://localhost:10000/torrents/api/v1/zooqle
 http://localhost:10000/torrents/api/v1/magnetdl
 http://localhost:10000/torrents/api/v1/kickasstorrents
+http://localhost:10000/torrents/api/v1/thepiratebay
 
 ```
 ## Usage
@@ -63,6 +64,7 @@ PC_GAMES_TORRENTS=https://pcgamestorrents.com
 ZOOQLE=https://zooqle.xyz
 MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://kickasstorrents.to
+TPB=https://pirateproxy.live
 ```
 
 ### Start server

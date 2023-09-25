@@ -14,6 +14,7 @@ const pcGamesTorrents = require("./routes/pcGamesTorrents");
 const zooqle = require("./routes/zooqle");
 const MagnetDL = require("./routes/magnetDL");
 const kickassTorrents = require("./routes/kickassTorrents");
+const thePirateBay = require("./routes/thePirateBay");
 
 //Use routes
 app.use("/torrents/api/v1/1337x", one337x);
@@ -25,6 +26,7 @@ app.use("/torrents/api/v1/pcgamestorrents", pcGamesTorrents);
 app.use("/torrents/api/v1/zooqle", zooqle);
 app.use("/torrents/api/v1/magnetdl", MagnetDL);
 app.use("/torrents/api/v1/kickasstorrents", kickassTorrents);
+app.use("/torrents/api/v1/thepiratebay", thePirateBay);
 
 app.get("*", (req, res) => {
   res.status(405).send(`${req.method} Method NOT allowed!`);
