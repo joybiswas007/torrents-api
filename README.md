@@ -11,6 +11,8 @@ http://localhost:10000/torrents/api/v1/knaben
 http://localhost:10000/torrents/api/v1/torrentgalaxy
 http://localhost:10000/torrents/api/v1/pcgamestorrents
 http://localhost:10000/torrents/api/v1/zooqle
+http://localhost:10000/torrents/api/v1/magnetdl
+
 ```
 ## Usage
 And request method must be `POST`. and request body should be like this:
@@ -58,10 +60,16 @@ KNABEN=https://knaben.eu
 TORRENT_GALAXY=https://tgx.rs
 PC_GAMES_TORRENTS=https://pcgamestorrents.com
 ZOOQLE=https://zooqle.xyz
+MAGNET_DL=https://www.magnetdl.com
 ```
 
 ### Start server
 To run the server locally, use the following command: `npm run dev`
+
+or if you want to install in the production server then make sure
+you've `pm2` installed globally or install `npm install -g pm2`.
+then run `npm run deploy`.
+check `pm2 logs` for logs.
 
 ## Contributing
 
