@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
+const filterDeadTorrents = require("../filterDeadTorrents");
+const filterEmptyObjects = require("../filterEmptyObjects");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
@@ -35,28 +37,7 @@ router.post("/", async (req, res) => {
         Leechers,
       });
     }
-
-    //Filter torrents array and remove empty objects
-    const filteredTorrents = torrents.filter((torrent) => {
-      return (
-        torrent.Name !== undefined &&
-        torrent.Name !== "" &&
-        torrent.Magnet !== undefined &&
-        torrent.Magnet !== "" &&
-        torrent.Size !== undefined &&
-        torrent.Size !== "" &&
-        torrent.Seeders !== undefined &&
-        torrent.Seeders !== "" &&
-        torrent.Leechers !== undefined &&
-        torrent.Leechers !== ""
-      );
-    });
-
-    if (filteredTorrents.length > 0) {
-      res.status(202).send(filteredTorrents);
-    } else {
-      res.status(404).send({ error: "No magnets found :(" });
-    }
+    filterDeadTorrents(res, filterEmptyObjects(torrents));
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

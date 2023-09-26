@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
+const filterDeadTorrents = require("../filterDeadTorrents");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
@@ -36,11 +37,7 @@ router.post("/", async (req, res) => {
         Leechers,
       });
     }
-    if (torrents.length > 0) {
-      res.status(202).send(torrents);
-    } else {
-      res.status(404).send({ error: "No magnets found :(" });
-    }
+    filterDeadTorrents(res, torrents);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

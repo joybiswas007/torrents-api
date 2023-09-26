@@ -1,4 +1,5 @@
 ## Torrents API
+
 Unofficial public torrent trackers Api written in Expressjs.
 
 ## Available routes
@@ -14,9 +15,13 @@ http://localhost:10000/torrents/api/v1/zooqle
 http://localhost:10000/torrents/api/v1/magnetdl
 http://localhost:10000/torrents/api/v1/kickasstorrents
 http://localhost:10000/torrents/api/v1/thepiratebay
+http://localhost:10000/torrents/api/v1/glotorrents
 
 ```
+
 ## Usage
+Api doesn't show any dead torrents in search.
+
 And request method must be `POST`. and request body should be like this:
 
 ```
@@ -24,7 +29,7 @@ And request method must be `POST`. and request body should be like this:
     "search": "search query"
 }
 
-Knaben route payload example: 
+Knaben route payload example:
 
 {
     "search": "search query",
@@ -32,9 +37,10 @@ Knaben route payload example:
 }
 Between Fast and Live mode try it out :p
 ```
-And when searching on knaben on few search results you'll see 
-`https://knaben.eu/live/dl/rutracker/?` this types of links 
-well fret NOT just add them to your client and it'll automatically 
+
+And when searching on knaben on few search results you'll see
+`https://knaben.eu/live/dl/rutracker/?` this types of links
+well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
 
 On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query.
@@ -65,9 +71,11 @@ ZOOQLE=https://zooqle.xyz
 MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://kickasstorrents.to
 TPB=https://pirateproxy.live
+GLO_TORRENTS=https://www.gtdb.to
 ```
 
 ### Start server
+
 To run the server locally, use the following command: `npm run dev`
 
 or if you want to install in the production server then make sure
@@ -82,4 +90,4 @@ to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-Show your support by [⭐️](https://github.com/joybiswas007/torrents-api/stargazers) this project! 
+Show your support by [⭐️](https://github.com/joybiswas007/torrents-api/stargazers) this project!
