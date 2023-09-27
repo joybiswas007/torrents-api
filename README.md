@@ -16,6 +16,7 @@ http://localhost:10000/torrents/api/v1/magnetdl
 http://localhost:10000/torrents/api/v1/kickasstorrents
 http://localhost:10000/torrents/api/v1/thepiratebay
 http://localhost:10000/torrents/api/v1/glotorrents
+http://localhost:10000/torrents/api/v1/nyaa
 
 ```
 
@@ -72,6 +73,7 @@ MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://kickasstorrents.to
 TPB=https://pirateproxy.live
 GLO_TORRENTS=https://www.gtdb.to
+NYAA=https://nyaa.si
 ```
 
 ### Start server

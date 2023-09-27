@@ -16,6 +16,7 @@ const MagnetDL = require("./api/routes/magnetDL");
 const kickassTorrents = require("./api/routes/kickassTorrents");
 const thePirateBay = require("./api/routes/thePirateBay");
 const gloTorrents = require("./api/routes/gloTorrents");
+const NYAA = require("./api/routes/nyaa");
 
 //Use routes
 app.use("/torrents/api/v1/1337x", one337x);
@@ -29,6 +30,7 @@ app.use("/torrents/api/v1/magnetdl", MagnetDL);
 app.use("/torrents/api/v1/kickasstorrents", kickassTorrents);
 app.use("/torrents/api/v1/thepiratebay", thePirateBay);
 app.use("/torrents/api/v1/glotorrents", gloTorrents);
+app.use("/torrents/api/v1/nyaa", NYAA);
 
 app.get("*", (req, res) => {
   res.status(405).send(`${req.method} Method NOT allowed!`);
