@@ -3,7 +3,8 @@
     "axios": "^1.5.0",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "puppeteer": "^21.3.5"
   },
   "name": "torrents-api",
   "version": "1.0.0",
