@@ -2,8 +2,8 @@
 
 Unofficial public torrent trackers API written in Express.js.
 
-
 ## Available routes
+
 ```
 | Route | Description | Category |
 |-------|-------------|----------|
@@ -23,15 +23,16 @@ Unofficial public torrent trackers API written in Express.js.
 
 ```
 
-
 ## Usage
 
 Api doesn't show any dead torrents in search.
 
-And request method must be `POST`. and request body should be like this:
+And request method must be `POST`:
+
+payloads examples:
 
 ```
-`Content-Type: application/json`
+Content-Type: application/json
 
 {
     "search": "search query"
@@ -44,6 +45,7 @@ Knaben route payload example:
     "mode: "fast" or "live"
 }
 ```
+
 Between Fast and Live mode try it out :p
 And when searching on knaben on few search results you'll see
 `https://knaben.eu/live/dl/rutracker/?` this types of links
