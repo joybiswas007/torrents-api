@@ -4,7 +4,6 @@ Unofficial public torrent trackers API written in Express.js.
 
 ## Available routes
 
-```
 | Route | Description | Category |
 |-------|-------------|----------|
 | /torrents/api/v1/1337x | 1337x API endpoint | General |
@@ -21,7 +20,6 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/nyaa | Nyaa API endpoint | Anime |
 | /torrents/api/v1/anidex | Anidex API endpoint | Anime |
 
-```
 
 ## Usage
 
