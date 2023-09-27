@@ -16,7 +16,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/zooqle | Zooqle API endpoint | General |
 | /torrents/api/v1/magnetdl | MagnetDL API endpoint | General |
 | /torrents/api/v1/kickasstorrents | KickassTorrents API endpoint | General |
-| /torrents/api/v1/thepiratebay | The Pirate Bay API endpoint | Torrent Trackers |
+| /torrents/api/v1/thepiratebay | The Pirate Bay API endpoint | General |
 | /torrents/api/v1/glotorrents | GloTorrents API endpoint | General |
 | /torrents/api/v1/nyaa | Nyaa API endpoint | Anime |
 | /torrents/api/v1/anidex | Anidex API endpoint | Anime |
@@ -31,6 +31,8 @@ Api doesn't show any dead torrents in search.
 And request method must be `POST`. and request body should be like this:
 
 ```
+`Content-Type: application/json`
+
 {
     "search": "search query"
 }
@@ -65,7 +67,7 @@ Create a `.env` file inside the directory and fill in all the details.
 Example `.env` file:
 
 ```
-PORT=PORT //IF NO port is set then default port is 10000
+PORT=PORT //If NO port is set then port 10000 is used.
 ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
@@ -96,10 +98,10 @@ The Torrents API is built using the following technologies:
 
 - Node.js
 - Express.js
+- Axios
+- dotenv
 - Puppeteer
-- Cheerio (for web scraping)
-- Axios (for making HTTP requests)
-- dotenv (for managing environment variables)
+- Cheerio
 
 ## Contributing
 
