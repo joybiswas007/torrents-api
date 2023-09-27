@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const filterDeadTorrents = require("../filterDeadTorrents");
+const filterTorrents = require("../filterTorrents");
 const filterEmptyObjects = require("../filterEmptyObjects");
 
 router.post("/", async (req, res) => {
@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
         Leechers,
       });
     }
-    filterDeadTorrents(res, filterEmptyObjects(torrents));
+    filterTorrents(res, filterEmptyObjects(torrents));
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

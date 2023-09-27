@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const filterDeadTorrents = require("../filterDeadTorrents");
+const filterTorrents = require("../filterTorrents");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
       });
     }
 
-    filterDeadTorrents(res, torrents);
+    filterTorrents(res, torrents);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

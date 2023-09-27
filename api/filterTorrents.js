@@ -1,6 +1,6 @@
 //Filter dead torrents and exclude them in results
 
-const filterDeadTorrents = (res, torrents) => {
+const filterTorrents = (res, torrents) => {
   const filteredTorrents = torrents.filter(
     (torrent) => torrent.Seeders !== "0"
   );
@@ -11,4 +11,4 @@ const filterDeadTorrents = (res, torrents) => {
   }
 };
 
-module.exports = filterDeadTorrents;
+module.exports = filterTorrents;
