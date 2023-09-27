@@ -4,22 +4,21 @@ Unofficial public torrent trackers API written in Express.js.
 
 ## Available routes
 
-| Route | Description | Category |
-|-------|-------------|----------|
-| /torrents/api/v1/1337x | 1337x API endpoint | General |
-| /torrents/api/v1/bitsearch | Bitsearch API endpoint | General |
-| /torrents/api/v1/torlock | Torlock API endpoint | General |
-| /torrents/api/v1/knaben | Knaben API endpoint | General |
-| /torrents/api/v1/torrentgalaxy | TorrentGalaxy API endpoint | General |
-| /torrents/api/v1/pcgamestorrents | PCGamesTorrents API endpoint | PC Games |
-| /torrents/api/v1/zooqle | Zooqle API endpoint | General |
-| /torrents/api/v1/magnetdl | MagnetDL API endpoint | General |
-| /torrents/api/v1/kickasstorrents | KickassTorrents API endpoint | General |
-| /torrents/api/v1/thepiratebay | The Pirate Bay API endpoint | General |
-| /torrents/api/v1/glotorrents | GloTorrents API endpoint | General |
-| /torrents/api/v1/nyaa | Nyaa API endpoint | Anime |
-| /torrents/api/v1/anidex | Anidex API endpoint | Anime |
-
+| Route                            | Description     | Category |
+| -------------------------------- | --------------- | -------- |
+| /torrents/api/v1/1337x           | 1337x           | General  |
+| /torrents/api/v1/bitsearch       | Bitsearch       | General  |
+| /torrents/api/v1/torlock         | Torlock         | General  |
+| /torrents/api/v1/knaben          | Knaben          | General  |
+| /torrents/api/v1/torrentgalaxy   | TorrentGalaxy   | General  |
+| /torrents/api/v1/pcgamestorrents | PCGamesTorrents | PC Games |
+| /torrents/api/v1/zooqle          | Zooqle          | General  |
+| /torrents/api/v1/magnetdl        | MagnetDL        | General  |
+| /torrents/api/v1/kickasstorrents | KickassTorrents | General  |
+| /torrents/api/v1/thepiratebay    | The Pirate Bay  | General  |
+| /torrents/api/v1/glotorrents     | GloTorrents     | General  |
+| /torrents/api/v1/nyaa            | Nyaa            | Anime    |
+| /torrents/api/v1/anidex          | Anidex          | Anime    |
 
 ## Usage
 
@@ -27,7 +26,7 @@ Api doesn't show any dead torrents in search.
 
 And request method must be `POST`:
 
-payloads examples:
+Payloads examples:
 
 ```
 Content-Type: application/json
@@ -67,7 +66,7 @@ Create a `.env` file inside the directory and fill in all the details.
 Example `.env` file:
 
 ```
-PORT=PORT //If NO port is set then port 10000 is used.
+PORT=AnyPortYouLike //If NO port is set then port 10000 is used.
 ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
@@ -99,9 +98,10 @@ The Torrents API is built using the following technologies:
 - Node.js
 - Express.js
 - Axios
+- Cheerio
 - dotenv
 - Puppeteer
-- Cheerio
+
 
 ## Contributing
 
