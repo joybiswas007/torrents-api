@@ -17,6 +17,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/kickasstorrents | KickassTorrents | General  |
 | /torrents/api/v1/thepiratebay    | The Pirate Bay  | General  |
 | /torrents/api/v1/glotorrents     | GloTorrents     | General  |
+| /torrents/api/v1/limetorrents    | LimeTorrents    | General  |
 | /torrents/api/v1/nyaa            | Nyaa            | Anime    |
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
 
@@ -78,6 +79,7 @@ MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://kickasstorrents.to
 TPB=https://pirateproxy.live
 GLO_TORRENTS=https://www.gtdb.to
+LIME_TORRENTS=https://www.limetorrents.lol
 NYAA=https://nyaa.si
 ANIDEX=https://anidex.info
 ```

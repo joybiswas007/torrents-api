@@ -16,6 +16,7 @@ const magnetdl = require("./api/routes/magnetDL");
 const kickassTorrents = require("./api/routes/kickassTorrents");
 const thePirateBay = require("./api/routes/thePirateBay");
 const gloTorrents = require("./api/routes/gloTorrents");
+const limeTorrents = require("./api/routes/limeTorrents");
 const nyaa = require("./api/routes/nyaa");
 const anidex = require("./api/routes/anidex");
 
@@ -31,6 +32,7 @@ app.use("/torrents/api/v1/magnetdl", magnetdl);
 app.use("/torrents/api/v1/kickasstorrents", kickassTorrents);
 app.use("/torrents/api/v1/thepiratebay", thePirateBay);
 app.use("/torrents/api/v1/glotorrents", gloTorrents);
+app.use("/torrents/api/v1/limetorrents", limeTorrents);
 app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
 
