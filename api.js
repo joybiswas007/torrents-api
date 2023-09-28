@@ -37,7 +37,10 @@ app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
 
 app.get("*", (req, res) => {
-  res.status(405).send(`${req.method} Method NOT allowed!`);
+  res.status(405).send({
+    method: req.method,
+    error: "Method Not Allowed",
+  });
 });
 
 app.listen(port, () => {
