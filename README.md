@@ -11,7 +11,6 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/torlock         | Torlock         | General  |
 | /torrents/api/v1/knaben          | Knaben          | General  |
 | /torrents/api/v1/torrentgalaxy   | TorrentGalaxy   | General  |
-| /torrents/api/v1/pcgamestorrents | PCGamesTorrents | PC Games |
 | /torrents/api/v1/zooqle          | Zooqle          | General  |
 | /torrents/api/v1/magnetdl        | MagnetDL        | General  |
 | /torrents/api/v1/kickasstorrents | KickassTorrents | General  |
@@ -51,12 +50,7 @@ And when searching on knaben on few search results you'll see
 `https://knaben.eu/live/dl/rutracker/?` this types of links
 well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
-
 On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query.
-
-pctorrentsgames api endpoint gives magnet link download page url
-cause the cheerio can't click on buttons and that site use ads you
-need to grab magnet link manually from the link.
 
 ## Requirements
 
@@ -75,7 +69,6 @@ BIT_SEARCH=https://bitsearch.to
 TOR_LOCK=https://www.torlock.com
 KNABEN=https://knaben.eu
 TORRENT_GALAXY=https://tgx.rs
-PC_GAMES_TORRENTS=https://pcgamestorrents.com
 ZOOQLE=https://zooqle.xyz
 MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://kickasstorrents.to
