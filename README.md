@@ -21,6 +21,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/pirateiro       | Pirateiro       | General  |
 | /torrents/api/v1/nyaa            | Nyaa            | Anime    |
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
+| /torrents/api/v1/yts             | yts             | Movie    |
 
 ## Usage
 
@@ -80,10 +81,11 @@ MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://kickasstorrents.to
 TPB=https://pirateproxy.live
 GLO_TORRENTS=https://www.gtdb.to
-LIME_TORRENTS=https://www.limetorrents.lol
-PIRATEIRO=https://pirateiro.com
 NYAA=https://nyaa.si
 ANIDEX=https://anidex.info
+LIME_TORRENTS=https://www.limetorrents.lol
+PIRATEIRO=https://pirateiro.com
+YTS=https://yts.mx
 ```
 
 ### Start server

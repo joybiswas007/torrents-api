@@ -20,6 +20,7 @@ const limeTorrents = require("./api/routes/limeTorrents");
 const pirateiro = require("./api/routes/pirateiro");
 const nyaa = require("./api/routes/nyaa");
 const anidex = require("./api/routes/anidex");
+const yts = require("./api/routes/yts");
 
 //Use routes
 app.use("/torrents/api/v1/1337x", _1337x);
@@ -37,6 +38,7 @@ app.use("/torrents/api/v1/limetorrents", limeTorrents);
 app.use("/torrents/api/v1/pirateiro", pirateiro);
 app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
+app.use("/torrents/api/v1/yts", yts);
 
 app.get("*", (req, res) => {
   res.status(405).send({
