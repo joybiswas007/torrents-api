@@ -3,6 +3,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
 const filterEmptyObjects = require("../filterEmptyObjects");
+const headers = require("../headers");
+
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
@@ -18,7 +20,7 @@ router.post("/", async (req, res) => {
     const search_url = `${MAGNET_DL}/${search
       .toLowerCase()
       .substr(0, 1)}/${search.replace(/\s+/g, "-").toLowerCase()}/`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     let torrents = [];
     const $element = $(".download tbody");

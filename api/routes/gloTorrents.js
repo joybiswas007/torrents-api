@@ -3,13 +3,15 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
 const filterEmptyObjects = require("../filterEmptyObjects");
+const headers = require("../headers");
+
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
   const GLO_TORRENTS = process.env.GLO_TORRENTS;
   try {
     const search_url = `${GLO_TORRENTS}/search_results.php?search=${search}&incldead=Search`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $(".ttable_headinner tbody");
     let torrents = [];

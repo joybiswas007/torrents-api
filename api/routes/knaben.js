@@ -2,13 +2,14 @@ const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
+const headers = require("../headers");
 
 router.post("/", async (req, res) => {
   const { search, mode } = req.body;
   const KNABEN = process.env.KNABEN;
   try {
     const search_url = `${KNABEN}/search/index.php?cat=000000000&q=${search}&search=${mode}`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $(".table tbody");
     let torrents = [];

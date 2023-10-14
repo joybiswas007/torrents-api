@@ -2,13 +2,15 @@ const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
+const headers = require("../headers");
+
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
   const TOR_LOCK = process.env.TOR_LOCK;
   try {
     const search_url = `${TOR_LOCK}/?qq=1&q=${search}`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("article div.table-responsive tbody").last();
     let torrents = [];

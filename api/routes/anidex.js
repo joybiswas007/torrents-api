@@ -8,7 +8,15 @@ router.post("/", async (req, res) => {
   const ANIDEX = process.env.ANIDEX;
   try {
     const search_url = `${ANIDEX}/?q=${search}`;
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      headless: "new",
+    });
     const page = await browser.newPage();
     await page.goto(search_url);
     // Wait for 5 seconds using a Promise and setTimeout

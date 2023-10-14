@@ -2,13 +2,14 @@ const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
+const headers = require("../headers");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
   const KICKASS = process.env.KICKASS;
   try {
     const search_url = `${KICKASS}/usearch/${search}/`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("table.data tbody");
     let torrents = [];

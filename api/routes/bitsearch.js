@@ -2,13 +2,15 @@ const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
+const headers = require("../headers");
+
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
   const BIT_SEARCH = process.env.BIT_SEARCH;
   try {
     const search_url = `${BIT_SEARCH}/search?q=${search}`;
-    const response = await axios.get(search_url);
+    const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     let torrents = [];
     const $search = $("li.search-result");
