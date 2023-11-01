@@ -1,14 +1,27 @@
 const router = require("express").Router();
 const cheerio = require("cheerio");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
 const filterTorrents = require("../filterTorrents");
+
+puppeteer.use(StealthPlugin());
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
   const PIRATEIRO = process.env.PIRATEIRO;
   const search_url = `${PIRATEIRO}/search?query=${search}`;
   try {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      headless: "new",
+    });
     const page = await browser.newPage();
     await page.goto(search_url);
     const pageContent = await page.content();
@@ -31,7 +44,7 @@ router.post("/", async (req, res) => {
         const size = document.querySelector(".single-size").textContent;
         return size;
       });
-
+      await browser.close();
       torrents.push({
         Name: torrent_name,
         Magnet,
@@ -41,7 +54,6 @@ router.post("/", async (req, res) => {
       });
     }
     filterTorrents(res, torrents);
-    await browser.close();
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

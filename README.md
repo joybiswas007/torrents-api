@@ -21,6 +21,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/nyaa            | Nyaa            | Anime    |
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
 | /torrents/api/v1/yts             | yts             | Movie    |
+| /torrents/api/v1/pcgamestorrents | PCGamesTorrents | PC Games |
 
 ## Usage
 
@@ -66,29 +67,26 @@ Example `.env` file:
 PORT=AnyPortYouLike //If NO port is set then port 10000 is used.
 ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
-TOR_LOCK=https://www.torlock.com
 KNABEN=https://knaben.eu
-TORRENT_GALAXY=https://tgx.rs
+TOR_LOCK=https://www.torlock.com
+TORRENT_GALAXY=https://torrentgalaxy.mx/
 ZOOQLE=https://zooqle.xyz
 MAGNET_DL=https://www.magnetdl.com
-KICKASS=https://kickasstorrents.to
+KICKASS=https://katcr.to/
 TPB=https://pirateproxy.live
-GLO_TORRENTS=https://www.gtdb.to
+GLO_TORRENTS=https://glodls.to/
 NYAA=https://nyaa.si
 ANIDEX=https://anidex.info
 LIME_TORRENTS=https://www.limetorrents.lol
-PIRATEIRO=https://pirateiro.com
 YTS=https://yts.mx
+PIRATEIRO=https://pirateiro.com
+PC_GAMES_TOR=https://pcgamestorrents.org
+PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ```
 
 ### Start server
 
 To run the server locally, use the following command: `npm run dev`
-
-or if you want to install in the production server then make sure
-you've `pm2` installed globally or install `npm install -g pm2`.
-then run `npm run deploy`.
-check `pm2 logs` for logs.
 
 ## Tech Stack
 

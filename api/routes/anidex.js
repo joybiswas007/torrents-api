@@ -1,7 +1,12 @@
 const router = require("express").Router();
 const cheerio = require("cheerio");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
 const filterTorrents = require("../filterTorrents");
+
+puppeteer.use(StealthPlugin());
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
@@ -33,6 +38,7 @@ router.post("/", async (req, res) => {
       const Size = $(torrent).find("td").eq(6).text().trim();
       const Seeders = $(torrent).find("td").eq(8).text().trim();
       const Leechers = $(torrent).find("td").eq(9).text().trim();
+      await browser.close();
       torrents.push({
         Name: torrent_name,
         Magnet,
@@ -42,7 +48,6 @@ router.post("/", async (req, res) => {
       });
     }
     filterTorrents(res, torrents);
-    await browser.close();
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
