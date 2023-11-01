@@ -38,7 +38,7 @@ app.use("/torrents/api/v1/pirateiro", pirateiro);
 app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
 app.use("/torrents/api/v1/yts", yts);
-app.use("/torrents/api/v1/pcgamestor", PCGAMES);
+app.use("/torrents/api/v1/pcgamestorrents", PCGAMES);
 
 app.get("*", (req, res) => {
   res.status(405).send({
