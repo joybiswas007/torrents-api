@@ -44,7 +44,6 @@ router.post("/", async (req, res) => {
         const size = document.querySelector(".single-size").textContent;
         return size;
       });
-      await browser.close();
       torrents.push({
         Name: torrent_name,
         Magnet,
@@ -53,6 +52,7 @@ router.post("/", async (req, res) => {
         Leechers,
       });
     }
+    await browser.close();
     filterTorrents(res, torrents);
   } catch (error) {
     res.status(500).send({ error: error.message });

@@ -38,7 +38,6 @@ router.post("/", async (req, res) => {
       const Size = $(torrent).find("td").eq(6).text().trim();
       const Seeders = $(torrent).find("td").eq(8).text().trim();
       const Leechers = $(torrent).find("td").eq(9).text().trim();
-      await browser.close();
       torrents.push({
         Name: torrent_name,
         Magnet,
@@ -46,6 +45,7 @@ router.post("/", async (req, res) => {
         Seeders,
         Leechers,
       });
+      await browser.close();
     }
     filterTorrents(res, torrents);
   } catch (error) {

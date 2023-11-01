@@ -51,13 +51,12 @@ router.post("/", async (req, res) => {
         const magnet = document.querySelector("input").getAttribute("value");
         return magnet;
       });
-      await browser.close();
-
       torrents.push({
         Name: torrent_name,
         Magnet,
         Url,
       });
+      await browser.close();
     }
     if (torrents.length > 0) {
       res.status(202).send(torrents);
