@@ -87,6 +87,15 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ### Start server
 
 To run the server locally, use the following command: `npm run dev`
+On server: `npm run start`
+
+Incase you face issue with Puppeteer on linux servers:
+
+```
+https://pptr.dev/troubleshooting
+https://stackoverflow.com/questions/64361897/puppeteer-not-working-on-vps-but-running-locally
+
+```
 
 ## Tech Stack
 
