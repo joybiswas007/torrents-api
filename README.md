@@ -87,9 +87,10 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ### Start server
 
 To run the server locally, use the following command: `npm run dev`
-On server: `npm run start`
+<br>On server: `npm run start`
 
-Incase you face issue with Puppeteer on linux servers:
+PCGamesTorrents, Pirateiro and Anidex requires Puppeteer for scraping. 
+If you face anykind issue with Puppeteer on linux servers:
 
 ```
 https://pptr.dev/troubleshooting
