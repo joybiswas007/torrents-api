@@ -25,13 +25,13 @@ Unofficial public torrent trackers API written in Express.js.
 
 ## Usage
 
-Api doesn't show any dead torrents in search.
+Api doesn't show any dead torrents in search results.
 
-And request method must be `POST`:
-
-Payloads examples:
+Payload examples:
 
 ```
+*routes:
+method: POST
 Content-Type: application/json
 
 {
@@ -42,12 +42,11 @@ Knaben route payload example:
 
 {
     "search": "search query",
-    "mode: "fast" or "live"
+    "mode: "fast" or "live" // Optional
 }
 ```
 
-Between Fast and Live mode try it out :p
-And when searching on knaben on few search results you'll see
+On Knaben's few search results you'll see
 `https://knaben.eu/live/dl/rutracker/?` this types of links
 well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
@@ -70,7 +69,7 @@ BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
 TOR_LOCK=https://www.torlock.com
 TORRENT_GALAXY=https://torrentgalaxy.mx/
-ZOOQLE=https://zooqle.xyz
+ZOOQLE=https://zooqle.xyz [DEAD] //replace with any working zooqle proxy
 MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://katcr.to/
 TPB=https://pirateproxy.live
@@ -89,7 +88,7 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 To run the server locally, use the following command: `npm run dev`
 <br>On server: `npm run start`
 
-PCGamesTorrents, Pirateiro and Anidex requires Puppeteer for scraping. 
+PCGamesTorrents, Pirateiro and Anidex requires Puppeteer for scraping.
 If you face anykind issue with Puppeteer on linux servers:
 
 ```
@@ -108,7 +107,6 @@ The Torrents API is built using the following technologies:
 - Cheerio
 - dotenv
 - Puppeteer
-
 
 ## Contributing
 
