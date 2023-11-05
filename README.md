@@ -25,7 +25,7 @@ Unofficial public torrent trackers API written in Express.js.
 
 ## Usage
 
-Api doesn't show any dead torrents in search results.
+Api doesn't show any dead torrents in search result.
 
 Payload examples:
 

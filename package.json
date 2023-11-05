@@ -17,9 +17,9 @@
     "dev": "nodemon api.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "joybiswas007",
+  "license": "MIT",
+  "description": "Unofficial public torrent trackers API written in Express.js.",
   "devDependencies": {
     "nodemon": "^3.0.1"
   }
