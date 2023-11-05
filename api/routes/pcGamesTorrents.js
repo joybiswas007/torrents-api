@@ -18,6 +18,15 @@ router.post("/", async (req, res) => {
     const $ = cheerio.load(response.data);
     const $element = $("main");
     let torrents = [];
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      headless: "new",
+    });
     for (const torrent of $element.find("article")) {
       const torrent_name = $(torrent).find(".uk-article-title a").text().trim();
       const Url = $(torrent).find(".uk-article-title a").attr("href");
@@ -25,15 +34,6 @@ router.post("/", async (req, res) => {
       const $magnet_search = await axios.get(Url);
       const $magnet_data = cheerio.load($magnet_search.data);
       const $magnet_link = $magnet_data("main article .uk-card a").attr("href");
-      const browser = await puppeteer.launch({
-        args: [
-          "--disable-setuid-sandbox",
-          "--no-sandbox",
-          "--single-process",
-          "--no-zygote",
-        ],
-        headless: "new",
-      });
       const page = await browser.newPage();
       await page.goto($magnet_link);
       // Wait for 6 seconds using a Promise and setTimeout
@@ -56,8 +56,8 @@ router.post("/", async (req, res) => {
         Magnet,
         Url,
       });
-      await browser.close();
     }
+    await browser.close();
     if (torrents.length > 0) {
       res.status(202).send(torrents);
     } else {

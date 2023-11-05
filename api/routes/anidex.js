@@ -45,8 +45,8 @@ router.post("/", async (req, res) => {
         Seeders,
         Leechers,
       });
-      await browser.close();
     }
+    await browser.close();
     filterTorrents(res, torrents);
   } catch (error) {
     res.status(500).send({ error: error.message });
