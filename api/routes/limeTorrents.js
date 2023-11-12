@@ -4,7 +4,6 @@ const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
 const headers = require("../headers");
 
-
 router.post("/", async (req, res) => {
   const { search } = req.body;
   const LIME_TORRENTS = process.env.LIME_TORRENTS;
@@ -15,7 +14,7 @@ router.post("/", async (req, res) => {
     const $element = $(".table2 tbody");
     let torrents = [];
     for (const torrent of $element.find("tr:not(:first-child)")) {
-      const torrent_name = $(torrent).find("a").last().text().trim();
+      const Name = $(torrent).find("a").last().text().trim();
       const torrent_url = $(torrent).find("a").last().attr("href");
       const Size = $(torrent).find(".tdnormal").last().text().trim();
       const Seeders = $(torrent).find(".tdseed").text().trim();
@@ -28,7 +27,7 @@ router.post("/", async (req, res) => {
         "href"
       );
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -37,7 +36,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

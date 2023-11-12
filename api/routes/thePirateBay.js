@@ -4,18 +4,16 @@ const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
 const headers = require("../headers");
 
-
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const TPB = process.env.TPB;
   try {
-    const search_url = `${TPB}/search/${search}/1/99/0`;
+    const search_url = `${process.env.TPB}/search/${search}/1/99/0`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("table tbody");
     let torrents = [];
     for (const torrent of $element.find("tr:not(:last-child)")) {
-      const torrent_name = $(torrent).find(".detName .detLink").text().trim();
+      const Name = $(torrent).find(".detName .detLink").text().trim();
       const Magnet = $(torrent)
         .find('a[href^="magnet:?xt=urn:btih"]')
         .attr("href");
@@ -24,7 +22,7 @@ router.post("/", async (req, res) => {
       const size_info = $(torrent).find(".detDesc").text().trim();
       const Size = size_info.split(",")[1].replace("Size", "").trim();
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -34,7 +32,7 @@ router.post("/", async (req, res) => {
 
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

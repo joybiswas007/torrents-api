@@ -16,20 +16,20 @@ router.post("/", async (req, res) => {
 
     //Convert element to object for async/await usage
     for (const element of Array.from($element.find("tr"))) {
-      const link = $(element).find("a").attr("href");
-      const torrent_link = `${TOR_LOCK}${link}`;
-      const torrent_name = $(element).find("a b").text();
+      const Name = $(element).find("a b").text();
       const Size = $(element).find(".ts").text();
       const Seeders = $(element).find(".tul").text();
       const Leechers = $(element).find(".tdl").text();
 
       //Visit every torrent link and fetch magnet link
+      const link = $(element).find("a").attr("href");
+      const torrent_link = `${TOR_LOCK}${link}`;
       const $magnet_link = await axios.get(torrent_link);
       const $magnet = cheerio.load($magnet_link.data);
       const Magnet = $magnet("h4 a").eq(0).attr("href");
 
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

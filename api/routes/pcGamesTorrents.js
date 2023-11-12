@@ -11,9 +11,8 @@ puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const PC_GAMES_TOR = process.env.PC_GAMES_TOR;
   try {
-    const search_url = `${PC_GAMES_TOR}/?s=${search}`;
+    const search_url = `${process.env.PC_GAMES_TOR}/?s=${search}`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("main");
@@ -28,7 +27,7 @@ router.post("/", async (req, res) => {
       headless: "new",
     });
     for (const torrent of $element.find("article")) {
-      const torrent_name = $(torrent).find(".uk-article-title a").text().trim();
+      const Name = $(torrent).find(".uk-article-title a").text().trim();
       const Url = $(torrent).find(".uk-article-title a").attr("href");
       //Visit the url to grab magnet links
       const $magnet_search = await axios.get(Url);
@@ -52,19 +51,19 @@ router.post("/", async (req, res) => {
         return magnet;
       });
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Url,
       });
     }
-    await browser.close();
     if (torrents.length > 0) {
       res.status(202).send(torrents);
     } else {
       res.status(404).send({ error: "No magnets found :(" });
     }
+    await browser.close();
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     const $element = $("section table tbody");
     let torrents = [];
     for (const torrent of $element.find("tr")) {
-      const torrent_name = $(torrent).find("a").text().trim();
+      const Name = $(torrent).find("a").text().trim();
       const Size = $(torrent).find("td").eq(1).text().trim();
       const Seeders = $(torrent).find("td").eq(2).text().trim();
       const Leechers = $(torrent).find("td").eq(3).text().trim();
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       const Magnet = $magnet_url('a[href^="magnet:?xt=urn:btih"]').attr("href");
 
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -44,12 +44,11 @@ router.post("/", async (req, res) => {
     }
 
     if (torrents[0].Magnet === undefined) {
-      res.status(404).send({ error: "No magnets found :(" });
-      return;
+      return res.status(404).send({ error: "No magnets found :(" });
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

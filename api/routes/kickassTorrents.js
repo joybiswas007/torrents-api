@@ -15,11 +15,7 @@ router.post("/", async (req, res) => {
     let torrents = [];
     //Ignore the first tr as we don't need any info from there
     for (const torrent of $element.find("tr:not(.firstr)")) {
-      const torrent_name = $(torrent)
-        .find("td .torrentname div a")
-        .eq(0)
-        .text()
-        .trim();
+      const Name = $(torrent).find("td .torrentname div a").eq(0).text().trim();
       const torrent_url = $(torrent)
         .find("td .torrentname div a")
         .eq(0)
@@ -31,7 +27,7 @@ router.post("/", async (req, res) => {
       const $magnet = cheerio.load($magnet_url.data);
       const Magnet = $magnet('a[href^="magnet:?xt=urn:btih"]').attr("href");
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -40,7 +36,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

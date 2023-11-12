@@ -6,15 +6,14 @@ const headers = require("../headers");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const ANIME_TOSHO = process.env.ANIME_TOSHO;
   try {
-    const search_url = `${ANIME_TOSHO}/search?q=${search}`;
+    const search_url = `${process.env.ANIME_TOSHO}/search?q=${search}`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("#content");
     let torrents = [];
     for (const torrent of $element.find(".home_list_entry")) {
-      const torrent_name = $(torrent).find(".link").text().trim();
+      const Name = $(torrent).find(".link").text().trim();
       const Size = $(torrent).find(".size").text().trim();
       const Magnet = $(torrent)
         .find('a[href^="magnet:?xt=urn:btih"]')
@@ -34,7 +33,7 @@ router.post("/", async (req, res) => {
       const Leechers = match ? parseInt(match[2]) : 0;
 
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -43,7 +42,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

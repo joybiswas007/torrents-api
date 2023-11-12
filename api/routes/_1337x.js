@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 
     for (let i = 0; i < $torrent_table.length; i++) {
       const tr = $torrent_table[i];
-      const torrent_name = $(tr).find(".coll-1.name a").last().text().trim();
+      const Name = $(tr).find(".coll-1.name a").last().text().trim();
       const url = `${ONE337X}${$(tr)
         .find(".coll-1.name a")
         .last()
@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
       );
 
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
 
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

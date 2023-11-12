@@ -6,15 +6,14 @@ const headers = require("../headers");
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const TORRENT_GALAXY = process.env.TORRENT_GALAXY;
   try {
-    const search_url = `${TORRENT_GALAXY}/torrents.php?search=${search}`;
+    const search_url = `${process.env.TORRENT_GALAXY}/torrents.php?search=${search}`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const torrent_table = $(".tgxtable");
     let torrents = [];
     for (const torrent of torrent_table.find(".tgxtablerow")) {
-      const torrent_name = $(torrent).find("a").eq(1).text().trim();
+      const Name = $(torrent).find("a").eq(1).text().trim();
       const Magnet = $(torrent).find('a[href^="magnet:"]').attr("href");
       const Size = $(torrent)
         .find("table tbody tr td span")
@@ -26,7 +25,7 @@ router.post("/", async (req, res) => {
       const Leechers = $(SL).find("b").eq(1).text().trim();
 
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -35,7 +34,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

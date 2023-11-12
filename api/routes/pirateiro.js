@@ -10,9 +10,8 @@ puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const PIRATEIRO = process.env.PIRATEIRO;
-  const search_url = `${PIRATEIRO}/search?query=${search}`;
   try {
+    const search_url = `${process.env.PIRATEIRO}/search?query=${search}`;
     const browser = await puppeteer.launch({
       args: [
         "--disable-setuid-sandbox",
@@ -29,7 +28,7 @@ router.post("/", async (req, res) => {
     const $element = $("ul");
     let torrents = [];
     for (const torrent of $element.find("a")) {
-      const torrent_name = $(torrent).find(".pt-title").text().trim();
+      const Name = $(torrent).find(".pt-title").text().trim();
       const Seeders = $(torrent).find(".btn-seed-home").text().trim();
       const Leechers = $(torrent).find(".btn-leech-home").text().trim();
       const url = $(torrent).attr("href");
@@ -45,17 +44,17 @@ router.post("/", async (req, res) => {
         return size;
       });
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
         Leechers,
       });
     }
-    await browser.close();
     filterTorrents(res, torrents);
+    await browser.close();
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

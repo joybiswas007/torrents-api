@@ -10,9 +10,8 @@ puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const ANIDEX = process.env.ANIDEX;
   try {
-    const search_url = `${ANIDEX}/?q=${search}`;
+    const search_url = `${process.env.ANIDEX}/?q=${search}`;
     const browser = await puppeteer.launch({
       args: [
         "--disable-setuid-sandbox",
@@ -31,7 +30,7 @@ router.post("/", async (req, res) => {
     const $element = $("table tbody");
     let torrents = [];
     for (const torrent of $element.find("tr")) {
-      const torrent_name = $(torrent).find(".torrent .span-1440").text().trim();
+      const Name = $(torrent).find(".torrent .span-1440").text().trim();
       const Magnet = $(torrent)
         .find('a[href^="magnet:?xt=urn:btih"]')
         .attr("href");
@@ -39,17 +38,17 @@ router.post("/", async (req, res) => {
       const Seeders = $(torrent).find("td").eq(8).text().trim();
       const Leechers = $(torrent).find("td").eq(9).text().trim();
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
         Leechers,
       });
     }
-    await browser.close();
     filterTorrents(res, torrents);
+    await browser.close();
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 

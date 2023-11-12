@@ -4,19 +4,17 @@ const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
 const headers = require("../headers");
 
-
 router.post("/", async (req, res) => {
   const { search } = req.body;
-  const BIT_SEARCH = process.env.BIT_SEARCH;
   try {
-    const search_url = `${BIT_SEARCH}/search?q=${search}`;
+    const search_url = `${process.env.BIT_SEARCH}/search?q=${search}`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     let torrents = [];
     const $search = $("li.search-result");
     for (let i = 0; i < $search.length; i++) {
       const torrent = $search[i];
-      const torrent_name = $(torrent).find("h5").text().trim();
+      const Name = $(torrent).find("h5").text().trim();
       const Magnet = $(torrent).find(".links a.dl-magnet").attr("href");
       const Size = $(torrent).find('img[alt="Size"]').parent().text().trim();
       const Seeders = $(torrent)
@@ -30,7 +28,7 @@ router.post("/", async (req, res) => {
         .text()
         .trim();
       torrents.push({
-        Name: torrent_name,
+        Name,
         Magnet,
         Size,
         Seeders,
@@ -39,7 +37,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(error.response.status).send({ error: error.message });
   }
 });
 
