@@ -23,6 +23,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/yts             | yts             | Movie    |
 | /torrents/api/v1/pcgamestorrents | PCGamesTorrents | PC Games |
 | /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
+| /torrents/api/v1/torrentz2       | Torrentz2       | General  |
 
 ## Usage
 
@@ -83,6 +84,7 @@ PIRATEIRO=https://pirateiro.com
 PC_GAMES_TOR=https://pcgamestorrents.org
 PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
+TORRENTZ2=https://torrentz2.nz
 ```
 
 ### Start server
