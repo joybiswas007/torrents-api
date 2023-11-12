@@ -21,6 +21,7 @@ const nyaa = require("./api/routes/nyaa");
 const anidex = require("./api/routes/anidex");
 const yts = require("./api/routes/yts");
 const pcgames = require("./api/routes/pcGamesTorrents");
+const animeTosho = require("./api/routes/animeTosho");
 
 //Use routes
 app.use("/torrents/api/v1/1337x", _1337x);
@@ -39,6 +40,7 @@ app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
 app.use("/torrents/api/v1/yts", yts);
 app.use("/torrents/api/v1/pcgamestorrents", pcgames);
+app.use("/torrents/api/v1/animetosho", animeTosho);
 
 app.get("*", (req, res) => {
   res.status(405).send({

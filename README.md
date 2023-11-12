@@ -22,6 +22,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
 | /torrents/api/v1/yts             | yts             | Movie    |
 | /torrents/api/v1/pcgamestorrents | PCGamesTorrents | PC Games |
+| /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
 
 ## Usage
 
@@ -68,12 +69,12 @@ ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
 TOR_LOCK=https://www.torlock.com
-TORRENT_GALAXY=https://torrentgalaxy.mx/
+TORRENT_GALAXY=https://torrentgalaxy.mx
 ZOOQLE=https://zooqle.xyz [DEAD] //replace with any working zooqle proxy
 MAGNET_DL=https://www.magnetdl.com
-KICKASS=https://katcr.to/
+KICKASS=https://katcr.to
 TPB=https://pirateproxy.live
-GLO_TORRENTS=https://glodls.to/
+GLO_TORRENTS=https://glodls.to
 NYAA=https://nyaa.si
 ANIDEX=https://anidex.info
 LIME_TORRENTS=https://www.limetorrents.lol
@@ -81,6 +82,7 @@ YTS=https://yts.mx
 PIRATEIRO=https://pirateiro.com
 PC_GAMES_TOR=https://pcgamestorrents.org
 PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
+ANIME_TOSHO=https://animetosho.org
 ```
 
 ### Start server
