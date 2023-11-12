@@ -48,7 +48,8 @@ router.post("/", async (req, res) => {
     filterTorrents(res, torrents);
     await browser.close();
   } catch (error) {
-    res.status(error.response.status).send({ error: error.message });
+    console.log(error);
+    res.status(500).send({ error: error.message });
   }
 });
 
