@@ -66,6 +66,7 @@ Example `.env` file:
 
 ```
 PORT=AnyPortYouLike //If NO port is set then port 10000 is used.
+USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
@@ -78,6 +79,7 @@ TPB=https://pirateproxy.live
 GLO_TORRENTS=https://glodls.to
 NYAA=https://nyaa.si
 ANIDEX=https://anidex.info
+ANIDEX_COOKIE="Cookies here"
 LIME_TORRENTS=https://www.limetorrents.lol
 YTS=https://yts.mx
 PIRATEIRO=https://pirateiro.com
@@ -86,6 +88,15 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 ```
+Visit Anidex, open the network tab and search for anything
+and grab the Cookie value and paste it in the .env  file.
+![anidex](image.png) 
+
+Use any user-agent you like.
+
+Site status page:
+https://thekickasstorrents.to
+https://proxygalaxy.me
 
 ### Start server
 
