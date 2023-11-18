@@ -88,13 +88,13 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 ```
+
 Visit Anidex, open the network tab and search for anything
-and grab the Cookie value and paste it in the .env  file.
-![anidex](image.png) 
+and grab the Cookie value and paste it in the .env file.
 
 Use any user-agent you like.
 
-Site status page:
+Sites status page:
 https://thekickasstorrents.to
 https://proxygalaxy.me
 
