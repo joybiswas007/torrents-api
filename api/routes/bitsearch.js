@@ -10,31 +10,19 @@ router.post("/", async (req, res) => {
     const search_url = `${process.env.BIT_SEARCH}/search?q=${search}`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
-    let torrents = [];
-    const $search = $("li.search-result");
-    for (let i = 0; i < $search.length; i++) {
-      const torrent = $search[i];
-      const Name = $(torrent).find("h5").text().trim();
-      const Magnet = $(torrent).find(".links a.dl-magnet").attr("href");
-      const Size = $(torrent).find('img[alt="Size"]').parent().text().trim();
-      const Seeders = $(torrent)
-        .find('img[alt="Seeder"]')
-        .parent()
-        .text()
-        .trim();
-      const Leechers = $(torrent)
-        .find('img[alt="Leecher"]')
-        .parent()
-        .text()
-        .trim();
-      torrents.push({
-        Name,
-        Magnet,
-        Size,
-        Seeders,
-        Leechers,
-      });
-    }
+    const torrents = $("li.search-result")
+      .map((i, torrent) => ({
+        Name: $(torrent).find("h5").text().trim(),
+        Size: $(torrent).find('img[alt="Size"]').parent().text().trim(),
+        Seeders: parseInt(
+          $(torrent).find('img[alt="Seeder"]').parent().text().trim()
+        ),
+        Leechers: parseInt(
+          $(torrent).find('img[alt="Leecher"]').parent().text().trim()
+        ),
+        Magnet: $(torrent).find(".links a.dl-magnet").attr("href"),
+      }))
+      .get();
     filterTorrents(res, torrents);
   } catch (error) {
     res.status(500).send({ error: error.message });

@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("#content");
-    let torrents = [];
+    const torrents = [];
     for (const torrent of $element.find(".home_list_entry")) {
       const Name = $(torrent).find(".link").text().trim();
       const Size = $(torrent).find(".size").text().trim();
@@ -34,10 +34,10 @@ router.post("/", async (req, res) => {
 
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

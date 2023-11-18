@@ -1,8 +1,10 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 10000;
 app.use(express.json());
+app.use(cors());
 
 //Import routes
 const _1337x = require("./api/routes/_1337x");
@@ -14,9 +16,9 @@ const zooqle = require("./api/routes/zooqle");
 const magnetdl = require("./api/routes/magnetDL");
 const kickassTorrents = require("./api/routes/kickassTorrents");
 const thePirateBay = require("./api/routes/thePirateBay");
+const pirateiro = require("./api/routes/pirateiro");
 const gloTorrents = require("./api/routes/gloTorrents");
 const limeTorrents = require("./api/routes/limeTorrents");
-const pirateiro = require("./api/routes/pirateiro");
 const nyaa = require("./api/routes/nyaa");
 const anidex = require("./api/routes/anidex");
 const yts = require("./api/routes/yts");
@@ -34,9 +36,9 @@ app.use("/torrents/api/v1/zooqle", zooqle);
 app.use("/torrents/api/v1/magnetdl", magnetdl);
 app.use("/torrents/api/v1/kickasstorrents", kickassTorrents);
 app.use("/torrents/api/v1/thepiratebay", thePirateBay);
+app.use("/torrents/api/v1/pirateiro", pirateiro);
 app.use("/torrents/api/v1/glotorrents", gloTorrents);
 app.use("/torrents/api/v1/limetorrents", limeTorrents);
-app.use("/torrents/api/v1/pirateiro", pirateiro);
 app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
 app.use("/torrents/api/v1/yts", yts);

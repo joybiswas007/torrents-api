@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("table.data tbody");
-    let torrents = [];
+    const torrents = [];
     //Ignore the first tr as we don't need any info from there
     for (const torrent of $element.find("tr:not(.firstr)")) {
       const Name = $(torrent).find("td .torrentname div a").eq(0).text().trim();
@@ -21,17 +21,17 @@ router.post("/", async (req, res) => {
         .eq(0)
         .attr("href");
       const Size = $(torrent).find("td").eq(1).text().trim();
-      const Seeders = $(torrent).find("td").eq(4).text().trim();
-      const Leechers = $(torrent).find("td").eq(5).text().trim();
-      const $magnet_url = await axios.get(`${KICKASS}${torrent_url}`);
-      const $magnet = cheerio.load($magnet_url.data);
-      const Magnet = $magnet('a[href^="magnet:?xt=urn:btih"]').attr("href");
+      const Seeders = parseInt($(torrent).find("td").eq(4).text().trim());
+      const Leechers = parseInt($(torrent).find("td").eq(5).text().trim());
+      const magnetPage = await axios.get(`${KICKASS}${torrent_url}`);
+      const magnetLink = cheerio.load(magnetPage.data);
+      const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

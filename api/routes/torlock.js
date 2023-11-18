@@ -12,28 +12,26 @@ router.post("/", async (req, res) => {
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $("article div.table-responsive tbody").last();
-    let torrents = [];
-
-    //Convert element to object for async/await usage
-    for (const element of Array.from($element.find("tr"))) {
+    const torrents = [];
+    for (const element of $element.find("tr")) {
       const Name = $(element).find("a b").text();
       const Size = $(element).find(".ts").text();
-      const Seeders = $(element).find(".tul").text();
-      const Leechers = $(element).find(".tdl").text();
+      const Seeders = parseInt($(element).find(".tul").text());
+      const Leechers = parseInt($(element).find(".tdl").text());
 
       //Visit every torrent link and fetch magnet link
       const link = $(element).find("a").attr("href");
       const torrent_link = `${TOR_LOCK}${link}`;
-      const $magnet_link = await axios.get(torrent_link);
-      const $magnet = cheerio.load($magnet_link.data);
-      const Magnet = $magnet("h4 a").eq(0).attr("href");
+      const magnetPage = await axios.get(torrent_link);
+      const magnetData = cheerio.load(magnetPage.data);
+      const Magnet = magnetData("h4 a").eq(0).attr("href");
 
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

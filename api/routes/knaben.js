@@ -11,19 +11,21 @@ router.post("/", async (req, res) => {
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $(".table tbody");
-    let torrents = [];
-    for (const torrent of Array.from($element.find("tr"))) {
+    const torrents = [];
+    for (const torrent of $element.find("tr")) {
       const Name = $(torrent).find(".text-wrap a").text().trim();
       const Magnet = $(torrent).find(".text-wrap a").attr("href");
       const Size = $(torrent).find(".text-nowrap td").eq(2).text();
-      const Seeders = $(torrent).find(".text-nowrap td").eq(4).text();
-      const Leechers = $(torrent).find(".text-nowrap td").eq(5).text();
+      const Seeders = parseInt($(torrent).find(".text-nowrap td").eq(4).text());
+      const Leechers = parseInt(
+        $(torrent).find(".text-nowrap td").eq(5).text()
+      );
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

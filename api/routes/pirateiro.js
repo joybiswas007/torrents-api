@@ -26,11 +26,13 @@ router.post("/", async (req, res) => {
     const pageContent = await page.content();
     const $ = cheerio.load(pageContent);
     const $element = $("ul");
-    let torrents = [];
+    const torrents = [];
     for (const torrent of $element.find("a")) {
       const Name = $(torrent).find(".pt-title").text().trim();
-      const Seeders = $(torrent).find(".btn-seed-home").text().trim();
-      const Leechers = $(torrent).find(".btn-leech-home").text().trim();
+      const Seeders = parseInt($(torrent).find(".btn-seed-home").text().trim());
+      const Leechers = parseInt(
+        $(torrent).find(".btn-leech-home").text().trim()
+      );
       const url = $(torrent).attr("href");
       await page.goto(url);
       const Magnet = await page.evaluate(() => {
@@ -45,10 +47,10 @@ router.post("/", async (req, res) => {
       });
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

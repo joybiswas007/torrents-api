@@ -21,26 +21,24 @@ router.post("/", async (req, res) => {
         .find(".coll-1.name a")
         .last()
         .attr("href")}`;
-      const Seeders = $(tr).find(".coll-2.seeds").text().trim();
-      const Leechers = $(tr).find(".coll-3.leeches").text().trim();
+      const Seeders = parseInt($(tr).find(".coll-2.seeds").text().trim());
+      const Leechers = parseInt($(tr).find(".coll-3.leeches").text().trim());
       const Size = $(tr)
         .find(".coll-4.size")
         .text()
         .trim()
         .replace(Seeders, "");
 
-      const $magnet_url = await axios.get(url);
-      const $magnet_data = cheerio.load($magnet_url.data);
-      const Magnet = $magnet_data('a[href^="magnet:?xt=urn:btih"]').attr(
-        "href"
-      );
+      const magnetPage = await axios.get(url);
+      const magnetLink = cheerio.load(magnetPage.data);
+      const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
 
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
 

@@ -7,11 +7,11 @@ const headers = require("../headers");
 router.post("/", async (req, res) => {
   const { search } = req.body;
   try {
-    const search_url = `${process.env.TORRENT_GALAXY}/torrents.php?search=${search}`;
+    const search_url = `${process.env.TORRENT_GALAXY}/torrents.php?search=${search}#results`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const torrent_table = $(".tgxtable");
-    let torrents = [];
+    const torrents = [];
     for (const torrent of torrent_table.find(".tgxtablerow")) {
       const Name = $(torrent).find("a").eq(1).text().trim();
       const Magnet = $(torrent).find('a[href^="magnet:"]').attr("href");
@@ -21,15 +21,15 @@ router.post("/", async (req, res) => {
         .text()
         .trim();
       const SL = $(torrent).find("table tbody tr td").eq(3);
-      const Seeders = $(SL).find("b").eq(0).text().trim();
-      const Leechers = $(SL).find("b").eq(1).text().trim();
+      const Seeders = parseInt($(SL).find("b").eq(0).text().trim());
+      const Leechers = parseInt($(SL).find("b").eq(1).text().trim());
 
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

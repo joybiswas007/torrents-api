@@ -20,21 +20,21 @@ router.post("/", async (req, res) => {
       .substr(0, 1)}/${search.replace(/\s+/g, "-").toLowerCase()}/`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
-    let torrents = [];
+    const torrents = [];
     const $element = $(".download tbody");
     for (const magnet of $element.find("tr")) {
       const Name = $(magnet).find(".n a").attr("title");
       const Magnet = $(magnet).find(".m a").attr("href");
       const Size = $(magnet).find("td").eq(5).text().trim();
-      const Seeders = $(magnet).find("td").eq(6).text().trim();
-      const Leechers = $(magnet).find("td").eq(7).text().trim();
+      const Seeders = parseInt($(magnet).find("td").eq(6).text().trim());
+      const Leechers = parseInt($(magnet).find("td").eq(7).text().trim());
 
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, filterEmptyObjects(torrents));

@@ -12,26 +12,24 @@ router.post("/", async (req, res) => {
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const $element = $(".table2 tbody");
-    let torrents = [];
+    const torrents = [];
     for (const torrent of $element.find("tr:not(:first-child)")) {
       const Name = $(torrent).find("a").last().text().trim();
       const torrent_url = $(torrent).find("a").last().attr("href");
       const Size = $(torrent).find(".tdnormal").last().text().trim();
-      const Seeders = $(torrent).find(".tdseed").text().trim();
-      const Leechers = $(torrent).find(".tdleech").text().trim();
+      const Seeders = parseInt($(torrent).find(".tdseed").text().trim());
+      const Leechers = parseInt($(torrent).find(".tdleech").text().trim());
       //Got to torrent details page and find magnet
-      const magnet_find = `${LIME_TORRENTS}${torrent_url}`;
-      const magnet_response = await axios.get(magnet_find);
-      const $magnet_data = cheerio.load(magnet_response.data);
-      const Magnet = $magnet_data('a[href^="magnet:?xt=urn:btih"]').attr(
-        "href"
-      );
+      const magnetPage = `${LIME_TORRENTS}${torrent_url}`;
+      const magnetLink = await axios.get(magnetPage);
+      const magnetData = cheerio.load(magnetLink.data);
+      const Magnet = magnetData('a[href^="magnet:?xt=urn:btih"]').attr("href");
       torrents.push({
         Name,
-        Magnet,
         Size,
         Seeders,
         Leechers,
+        Magnet,
       });
     }
     filterTorrents(res, torrents);

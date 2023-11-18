@@ -2,7 +2,7 @@
 
 const filterTorrents = (res, torrents) => {
   const filteredTorrents = torrents.filter(
-    (torrent) => torrent.Seeders !== "0"
+    (torrent) => torrent.Seeders !== 0
   );
   if (filteredTorrents.length > 0) {
     res.status(202).send(filteredTorrents);
