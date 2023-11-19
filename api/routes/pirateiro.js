@@ -1,30 +1,20 @@
 const router = require("express").Router();
+const axios = require("axios");
 const cheerio = require("cheerio");
-const puppeteer = require("puppeteer-extra");
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
 const filterTorrents = require("../filterTorrents");
-
-puppeteer.use(StealthPlugin());
-puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
+const headers = {
+  headers: {
+    Cookie: process.env.PIRATEIRO_COOKIE,
+    "User-Agent": process.env.USER_AGENT,
+  },
+};
 
 router.post("/", async (req, res) => {
   const { search } = req.body;
   try {
     const search_url = `${process.env.PIRATEIRO}/search?query=${search}`;
-    const browser = await puppeteer.launch({
-      args: [
-        "--disable-setuid-sandbox",
-        "--no-sandbox",
-        "--single-process",
-        "--no-zygote",
-      ],
-      headless: "new",
-    });
-    const page = await browser.newPage();
-    await page.goto(search_url);
-    const pageContent = await page.content();
-    const $ = cheerio.load(pageContent);
+    const response = await axios.get(search_url, headers);
+    const $ = cheerio.load(response.data);
     const $element = $("ul");
     const torrents = [];
     for (const torrent of $element.find("a")) {
@@ -34,17 +24,11 @@ router.post("/", async (req, res) => {
         $(torrent).find(".btn-leech-home").text().trim()
       );
       const url = $(torrent).attr("href");
-      await page.goto(url);
-      const Magnet = await page.evaluate(() => {
-        const magnet_lnk = document
-          .querySelector('a[href^="magnet:?xt=urn:btih"]')
-          .getAttribute("href");
-        return magnet_lnk;
-      });
-      const Size = await page.evaluate(() => {
-        const size = document.querySelector(".single-size").textContent;
-        return size;
-      });
+
+      const torrentPage = await axios.get(url, headers);
+      const info = cheerio.load(torrentPage.data);
+      const Size = info(".single-size").text().trim();
+      const Magnet = info('a[href^="magnet:?xt=urn:btih"]').attr("href");
       torrents.push({
         Name,
         Size,
@@ -54,7 +38,6 @@ router.post("/", async (req, res) => {
       });
     }
     filterTorrents(res, torrents);
-    await browser.close();
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

@@ -83,14 +83,20 @@ ANIDEX_COOKIE="Cookies here"
 LIME_TORRENTS=https://www.limetorrents.lol
 YTS=https://yts.mx
 PIRATEIRO=https://pirateiro.com
+PIRATEIRO_COOKIE="cookies here"
 PC_GAMES_TOR=https://pcgamestorrents.org
 PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 ```
+Anidex and Pirateiro has some kind of protection enabled. To bypass that
+need cookies from their sites. So, visit Anidex and Pirateiro open network tab
+search for something and get the Cookie value and save them in .env file.
 
-Visit Anidex, open the network tab and search for anything
-and grab the Cookie value and paste it in the .env file.
+ANIDEX_COOKIE="Cookies here"
+PIRATEIRO_COOKIE="Cookies here"
+
+Make sure to fill these two.
 
 Use any user-agent you like.
 
