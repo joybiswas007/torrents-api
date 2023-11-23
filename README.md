@@ -72,6 +72,7 @@ BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
 TOR_LOCK=https://www.torlock.com
 TORRENT_GALAXY=https://torrentgalaxy.mx
+TGX_COOKIE="Cookies here"
 ZOOQLE=https://zooqle.skin
 MAGNET_DL=https://www.magnetdl.com
 KICKASS=https://katcr.to
@@ -89,14 +90,13 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 ```
+
 Anidex and Pirateiro has some kind of protection enabled. To bypass that
 need cookies from their sites. So, visit Anidex and Pirateiro open network tab
 search for something and get the Cookie value and save them in .env file.
 
-ANIDEX_COOKIE="Cookies here"
-PIRATEIRO_COOKIE="Cookies here"
-
-Make sure to fill these two.
+TorrentGalaxy shows captcha when you search for something. After completing the captcha open
+network tab and search for something and grab the Cookie value also make sure Cookie value includes `fencekey`
 
 Use any user-agent you like.
 

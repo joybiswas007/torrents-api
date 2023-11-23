@@ -2,18 +2,23 @@ const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../filterTorrents");
-const headers = require("../headers");
-
 router.post("/", async (req, res) => {
-  const { search } = req.body;
   try {
-    const search_url = `${process.env.TORRENT_GALAXY}/torrents.php?search=${search}#results`;
+    const { search } = req.body;
+    const headers = {
+      headers: {
+        "Content-Type": "text/html",
+        Cookie: process.env.TGX_COOKIE,
+        "User-Agent": process.env.USER_AGENT,
+      },
+    };
+    const search_url = `${process.env.TORRENT_GALAXY}/torrents.php?search=${search}`;
     const response = await axios.get(search_url, headers);
     const $ = cheerio.load(response.data);
     const torrent_table = $(".tgxtable");
     const torrents = [];
     for (const torrent of torrent_table.find(".tgxtablerow")) {
-      const Name = $(torrent).find("a").eq(1).text().trim();
+      const Name = $(torrent).find("a").eq(1).attr("title");
       const Magnet = $(torrent).find('a[href^="magnet:"]').attr("href");
       const Size = $(torrent)
         .find("table tbody tr td span")
