@@ -5,6 +5,7 @@ const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
 const cheerio = require("cheerio");
 const headers = require("../headers");
+const { PCG } = require("../../db/scrapeSchema");
 
 puppeteer.use(StealthPlugin());
 puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
@@ -91,6 +92,24 @@ router.post("/", async (req, res) => {
       });
     }
     if (torrents.length > 0) {
+      torrents.map(async (torrent) => {
+        const existingRecord = await PCG.findOne({
+          name: torrent.name,
+          url: torrent.url,
+        });
+        if (!existingRecord) {
+          const search = new PCG({
+            name: torrent.name,
+            url: torrent.url,
+            size: torrent.size,
+            genre: torrent.genre,
+            release_date: torrent.release_date,
+            magnet: torrent.magnet,
+            overview: torrent.overview,
+          });
+          await search.save();
+        }
+      });
       res.status(202).send(torrents);
     } else {
       res.status(404).send({ error: "No magnets found :(" });

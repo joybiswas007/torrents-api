@@ -47,9 +47,8 @@ app.use("/torrents/api/v1/animetosho", animeTosho);
 app.use("/torrents/api/v1/torrentz2", torrentz2);
 
 app.get("*", (req, res) => {
-  res.status(405).send({
-    method: req.method,
-    error: "Method Not Allowed",
+  res.status(403).send({
+    error: `Method ${req.method} not allowed`,
   });
 });
 

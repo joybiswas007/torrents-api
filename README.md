@@ -67,6 +67,7 @@ Example `.env` file:
 ```
 PORT=AnyPortYouLike //If NO port is set then port 10000 is used.
 USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+MONGODB_URI="add mongodb uri here"
 ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
@@ -90,6 +91,9 @@ PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 ```
+
+Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user 
+search for something that is already present in db it won't be saved into db.
 
 Anidex and Pirateiro has some kind of protection enabled. To bypass that
 need cookies from their sites. So, visit Anidex and Pirateiro open network tab
