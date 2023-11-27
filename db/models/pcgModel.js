@@ -12,7 +12,7 @@ const pcgamesSchema = new mongoose.Schema(
       required: true,
     },
     size: {
-      type: Number,
+      type: String,
       required: true,
     },
     genre: {
