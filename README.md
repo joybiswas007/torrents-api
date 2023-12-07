@@ -22,7 +22,6 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
 | /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
 | /torrents/api/v1/torrentz2       | Torrentz2       | General  |
-| /torrents/api/v1/tokyotoshokan   | TokyoToshokan   | General  |
 
 ## Usage
 
@@ -38,20 +37,22 @@ Content-Type: application/json
 {
     "search": "search query"
 }
-
-Knaben route payload example:
-
-{
-    "search": "search query",
-    "mode: "fast" or "live" // Optional
-}
 ```
 
 On Knaben's few search results you'll see
 `https://knaben.eu/live/dl/rutracker/?` this types of links
 well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
-On the TorrentGalaxy api endpoint you can search query via imdb id or or regular search query.
+
+You can also search through database and give user results
+route: `http://localhost:PORT/search`
+method: POST
+Content-Type: application/json
+
+{
+    "search": "search query"
+}
+
 
 ## Requirements
 
@@ -86,7 +87,6 @@ PIRATEIRO=https://pirateiro.com
 PIRATEIRO_COOKIE="cookies here"
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
-TOKYO_TOSHOKAN=https://www.tokyotosho.info
 ```
 
 Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user 

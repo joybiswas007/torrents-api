@@ -1,9 +1,7 @@
 const router = require("express").Router();
 const { Search } = require("./db/scrapeSchema");
 
-const escapeRegExp = (string) => {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-};
+const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 router.post("/", async (req, res) => {
   try {

@@ -1,41 +1,33 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const filterTorrents = require("../filterTorrents");
-const filterEmptyObjects = require("../filterEmptyObjects");
-const headers = require("../headers");
+const filterTorrents = require("../../filterTorrents");
+const filterEmptyObjects = require("../../filterEmptyObjects");
+const headers = require("../../headers");
+const scrapeTorrent = require("./scrapeTorrent");
 
 router.post("/", async (req, res) => {
-  const { search } = req.body;
   try {
-    /* 
+    const { MAGNET_DL } = process.env;
+    const { search } = req.body;
+    /*
     search.toLowerCase().substr(0, 1) was used because with each
     search query magnetdl use 1st letter of the search query to make dynamic route
     and it add '-' if you search for a long query
     Guardians of the Galaxy becomes https://magnetdl.com/g/guardians-of-the-galaxy
     Tenet 2020 becomes https://magnetdl.com/t/tenet-2020/
     */
-    const search_url = `${process.env.MAGNET_DL}/${search
+    const searchUrl = `${MAGNET_DL}/${search
       .toLowerCase()
       .substr(0, 1)}/${search.replace(/\s+/g, "-").toLowerCase()}/`;
-    const response = await axios.get(search_url, headers);
+    const response = await axios.get(searchUrl, headers);
     const $ = cheerio.load(response.data);
     const torrents = [];
     const $element = $(".download tbody");
-    for (const magnet of $element.find("tr")) {
-      const Name = $(magnet).find(".n a").attr("title");
-      const Magnet = $(magnet).find(".m a").attr("href");
-      const Size = $(magnet).find("td").eq(5).text().trim();
-      const Seeders = parseInt($(magnet).find("td").eq(6).text().trim());
-      const Leechers = parseInt($(magnet).find("td").eq(7).text().trim());
-
-      torrents.push({
-        Name,
-        Size,
-        Seeders,
-        Leechers,
-        Magnet,
-      });
+    // eslint-disable-next-line no-restricted-syntax
+    for (const torrent of $element.find("tr")) {
+      const torrrentDetails = scrapeTorrent(MAGNET_DL, torrent, $);
+      torrents.push(torrrentDetails);
     }
     filterTorrents(res, filterEmptyObjects(torrents));
   } catch (error) {

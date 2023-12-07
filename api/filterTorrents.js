@@ -1,6 +1,6 @@
-const { Search } = require("./../db/scrapeSchema");
+const { Search } = require("../db/scrapeSchema");
 
-//Filter dead torrents and exclude them in results and save in DB
+// Filter dead torrents and exclude them in results and save in DB
 // If data is already present in db then don't save it just return the result
 
 const filterTorrents = (res, torrents) => {
@@ -19,6 +19,7 @@ const filterTorrents = (res, torrents) => {
           Seeders: search.Seeders,
           Leechers: search.Leechers,
           Magnet: search.Magnet,
+          Url: search.Url,
         });
         await scrape.save();
       }

@@ -23,8 +23,11 @@ const scrapedDataSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    Url: {
+      type: String,
+    },
   },
-  schemaOptions
+  schemaOptions,
 );
 
 const Search = mongoose.model("Search", scrapedDataSchema);
