@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 // Import routes
-const ONE337X = require("./api/routes/one337x/one337x");
+const one337X = require("./api/routes/one337x/one337x");
 const bitsearch = require("./api/routes/bitSearch/bitsearch");
 const knaben = require("./api/routes/knaben/knaben");
 const torlock = require("./api/routes/torlock/torlock");
@@ -27,7 +27,7 @@ const torrentz2 = require("./api/routes/torrentz2/torrentz2");
 const search = require("./api/routes/searchDB");
 
 // Use routes
-app.use("/torrents/api/v1/1337x", ONE337X);
+app.use("/torrents/api/v1/1337x", one337X);
 app.use("/torrents/api/v1/bitsearch", bitsearch);
 app.use("/torrents/api/v1/knaben", knaben);
 app.use("/torrents/api/v1/torlock", torlock);
