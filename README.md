@@ -20,10 +20,9 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/pirateiro       | Pirateiro       | General  |
 | /torrents/api/v1/nyaa            | Nyaa            | Anime    |
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
-| /torrents/api/v1/yts             | yts             | Movie    |
-| /torrents/api/v1/pcgamestorrents | PCGamesTorrents | PC Games |
 | /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
 | /torrents/api/v1/torrentz2       | Torrentz2       | General  |
+| /torrents/api/v1/tokyotoshokan   | TokyoToshokan   | General  |
 
 ## Usage
 
@@ -83,13 +82,11 @@ NYAA=https://nyaa.si
 ANIDEX=https://anidex.info
 ANIDEX_COOKIE="Cookies here"
 LIME_TORRENTS=https://www.limetorrents.lol
-YTS=https://yts.mx
 PIRATEIRO=https://pirateiro.com
 PIRATEIRO_COOKIE="cookies here"
-PC_GAMES_TOR=https://pcgamestorrents.org
-PC_GAMES_MAGNET=https://dl.pcgamestorrents.org/get-url.php
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
+TOKYO_TOSHOKAN=https://www.tokyotosho.info
 ```
 
 Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user 
@@ -113,15 +110,6 @@ https://proxygalaxy.me
 To run the server locally, use the following command: `npm run dev`
 <br>On server: `npm run start`
 
-PCGamesTorrents, Pirateiro and Anidex requires Puppeteer for scraping.
-If you face anykind issue with Puppeteer on linux servers:
-
-```
-https://pptr.dev/troubleshooting
-https://stackoverflow.com/questions/64361897/puppeteer-not-working-on-vps-but-running-locally
-
-```
-
 ## Tech Stack
 
 The Torrents API is built using the following technologies:
@@ -131,7 +119,6 @@ The Torrents API is built using the following technologies:
 - Axios
 - Cheerio
 - dotenv
-- Puppeteer
 
 ## Contributing
 
