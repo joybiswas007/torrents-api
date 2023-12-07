@@ -10,7 +10,6 @@ const filterTorrents = (res, torrents) => {
       const existingRecord = await Search.findOne({
         Name: search.Name,
         Size: search.Size,
-        Seeders: search.Seeders,
       });
       if (!existingRecord) {
         const scrape = new Search({

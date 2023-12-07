@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Search } = require("./db/scrapeSchema");
+const { Search } = require("../../db/scrapeSchema");
 
 const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 

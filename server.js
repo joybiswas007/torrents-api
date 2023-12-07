@@ -24,7 +24,7 @@ const nyaa = require("./api/routes/nyaa/nyaa");
 const anidex = require("./api/routes/anidex/anidex");
 const animeTosho = require("./api/routes/animeTosho/animeTosho");
 const torrentz2 = require("./api/routes/torrentz2/torrentz2");
-const search = require("./searchDB");
+const search = require("./api/routes/searchDB");
 
 // Use routes
 app.use("/torrents/api/v1/1337x", ONE337X);
