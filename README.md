@@ -22,7 +22,7 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
 | /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
 | /torrents/api/v1/torrentz2       | Torrentz2       | General  |
-| /search                          | Search the DB   | Databse  |
+| /search                          | Search the DB   | Database |
 
 
 ## Usage
@@ -111,6 +111,7 @@ The Torrents API is built using the following technologies:
 - Axios
 - Cheerio
 - dotenv
+- Mongoose
 
 ## Contributing
 
