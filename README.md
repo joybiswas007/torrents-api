@@ -22,6 +22,8 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/anidex          | Anidex          | Anime    |
 | /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
 | /torrents/api/v1/torrentz2       | Torrentz2       | General  |
+| /search                          | Search the DB   | Databse  |
+
 
 ## Usage
 
@@ -43,15 +45,6 @@ On Knaben's few search results you'll see
 `https://knaben.eu/live/dl/rutracker/?` this types of links
 well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
-
-You can also search through database and give user results
-route: `http://localhost:PORT/search`
-method: POST
-Content-Type: application/json
-
-{
-"search": "search query"
-}
 
 ## Requirements
 
