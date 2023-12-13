@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
     const $ = cheerio.load(response.data);
     const torrents = [];
     const $element = $(".download tbody");
-    // eslint-disable-next-line no-restricted-syntax
     for (const torrent of $element.find("tr")) {
       const torrrentDetails = scrapeTorrent(MAGNET_DL, torrent, $);
       torrents.push(torrrentDetails);

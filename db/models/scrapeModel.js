@@ -27,7 +27,7 @@ const scrapedDataSchema = new mongoose.Schema(
       type: String,
     },
   },
-  schemaOptions,
+  schemaOptions
 );
 
 const Search = mongoose.model("Search", scrapedDataSchema);

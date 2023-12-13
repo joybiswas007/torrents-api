@@ -4,7 +4,10 @@ const cheerio = require("cheerio");
 const scrapeTorrent = async (torrent, $, headers) => {
   const Name = $(torrent).find(".pt-title").text().trim();
   const Seeders = parseInt($(torrent).find(".btn-seed-home").text().trim(), 10);
-  const Leechers = parseInt($(torrent).find(".btn-leech-home").text().trim(), 10);
+  const Leechers = parseInt(
+    $(torrent).find(".btn-leech-home").text().trim(),
+    10
+  );
   const Url = $(torrent).attr("href");
 
   const torrentPage = await axios.get(Url, headers);

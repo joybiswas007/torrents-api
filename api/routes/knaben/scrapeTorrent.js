@@ -5,10 +5,9 @@ const scrapeTorrent = (torrent, $) => {
   const Seeders = parseInt($(torrent).find(".text-nowrap td").eq(4).text(), 10);
   const Leechers = parseInt(
     $(torrent).find(".text-nowrap td").eq(5).text(),
-    10,
+    10
   );
-  const Url = $(torrent).find(".text-nowrap td").eq(6).find("a")
-    .attr("href");
+  const Url = $(torrent).find(".text-nowrap td").eq(6).find("a").attr("href");
   return {
     Name,
     Size,

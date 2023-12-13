@@ -2,18 +2,14 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 const scrapeTorrent = async (KICKASS, torrent, $) => {
-  const Name = $(torrent).find("td .torrentname div a").eq(0).text()
-    .trim();
+  const Name = $(torrent).find("td .torrentname div a").eq(0).text().trim();
   const torrentUrl = $(torrent)
     .find("td .torrentname div a")
     .eq(0)
     .attr("href");
-  const Size = $(torrent).find("td").eq(1).text()
-    .trim();
-  const Seeders = parseInt($(torrent).find("td").eq(4).text()
-    .trim(), 10);
-  const Leechers = parseInt($(torrent).find("td").eq(5).text()
-    .trim(), 10);
+  const Size = $(torrent).find("td").eq(1).text().trim();
+  const Seeders = parseInt($(torrent).find("td").eq(4).text().trim(), 10);
+  const Leechers = parseInt($(torrent).find("td").eq(5).text().trim(), 10);
   // eslint-disable-next-line no-await-in-loop
   const Url = `${KICKASS}${torrentUrl}`;
   const magnetPage = await axios.get(Url);

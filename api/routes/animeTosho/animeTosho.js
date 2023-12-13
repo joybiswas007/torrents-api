@@ -14,7 +14,6 @@ router.post("/", async (req, res) => {
     const $ = cheerio.load(response.data);
     const $element = $("#content");
     const torrents = [];
-    // eslint-disable-next-line no-restricted-syntax
     for (const torrent of $element.find(".home_list_entry")) {
       const torrentDetails = scrapeTorrent(torrent, $);
       torrents.push(torrentDetails);

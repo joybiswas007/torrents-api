@@ -14,11 +14,8 @@ router.post("/", async (req, res) => {
     const $ = cheerio.load(response.data);
     const torrents = [];
     const torrentTable = $(".table-list tbody tr");
-
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < torrentTable.length; i++) {
       const tr = torrentTable[i];
-      // eslint-disable-next-line no-await-in-loop
       const torrentDetails = await scrapeTorrent(ONE337X, tr, $);
       torrents.push(torrentDetails);
     }

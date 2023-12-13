@@ -14,9 +14,7 @@ router.post("/", async (req, res) => {
     const $ = cheerio.load(response.data);
     const $element = $("article div.table-responsive tbody").last();
     const torrents = [];
-    // eslint-disable-next-line no-restricted-syntax
     for (const torrent of $element.find("tr")) {
-      // eslint-disable-next-line no-await-in-loop
       const torrentDetails = await scrapeTorrent(TOR_LOCK, torrent, $);
       torrents.push(torrentDetails);
     }

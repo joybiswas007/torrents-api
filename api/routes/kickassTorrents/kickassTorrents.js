@@ -15,9 +15,7 @@ router.post("/", async (req, res) => {
     const $element = $("table.data tbody");
     const torrents = [];
     // Ignore the first tr as we don't need any info from there
-    // eslint-disable-next-line no-restricted-syntax
     for (const torrent of $element.find("tr:not(.firstr)")) {
-      // eslint-disable-next-line no-await-in-loop
       const torrentDetails = await scrapeTorrent(KICKASS, torrent, $);
       torrents.push(torrentDetails);
     }

@@ -50,9 +50,8 @@ method: POST
 Content-Type: application/json
 
 {
-    "search": "search query"
+"search": "search query"
 }
-
 
 ## Requirements
 
@@ -89,7 +88,7 @@ ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 ```
 
-Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user 
+Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user
 search for something that is already present in db it won't be saved into db.
 
 Anidex and Pirateiro has some kind of protection enabled. To bypass that

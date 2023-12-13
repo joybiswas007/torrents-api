@@ -4,7 +4,6 @@ const cheerio = require("cheerio");
 const filterTorrents = require("../../filterTorrents");
 const scrapeTorrent = require("./scrapeTorrent");
 
-// eslint-disable-next-line consistent-return
 router.post("/", async (req, res) => {
   try {
     const { ZOOQLE, USER_AGENT } = process.env;
@@ -20,14 +19,12 @@ router.post("/", async (req, res) => {
       {
         q: search,
       },
-      headers,
+      headers
     );
     const $ = cheerio.load(response.data);
     const $element = $("section table tbody");
     const torrents = [];
-    // eslint-disable-next-line no-restricted-syntax
     for (const torrent of $element.find("tr")) {
-      // eslint-disable-next-line no-await-in-loop
       const torrentDetails = await scrapeTorrent(ZOOQLE, torrent, $, headers);
       torrents.push(torrentDetails);
     }
