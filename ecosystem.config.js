@@ -6,6 +6,7 @@ module.exports = {
       instances: "max",
       exec_mode: "cluster",
       watch: true,
+      ignore_watch : ["node_modules", "\\.git", "*.log", "README.md"],
       env: {
         NODE_ENV: "development"
       },
