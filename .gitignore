@@ -1,4 +1,4 @@
 node_modules/
 .env
-api-combine.log
+api-combined.log
 api-error.log
