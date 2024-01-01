@@ -24,7 +24,6 @@ Unofficial public torrent trackers API written in Express.js.
 | /torrents/api/v1/torrentz2       | Torrentz2       | General  |
 | /search                          | Search the DB   | Database |
 
-
 ## Usage
 
 Api doesn't show any dead torrents in search result.
@@ -57,6 +56,7 @@ Create a `.env` file inside the directory and fill in all the details.
 Example `.env` file:
 
 ```
+NODE_ENV=production or development
 PORT=AnyPortYouLike //If NO port is set then port 10000 is used.
 USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 MONGODB_URI="add mongodb uri here"
@@ -98,9 +98,14 @@ https://thekickasstorrents.to
 https://proxygalaxy.me
 
 ### Start server
+To run the server on your local machine, execute the following command: `npm run dev`
+<br>On the server, use: `npm run start`
+You also have the option to run it using `pm2`. If you don't have `pm2` installed, install it using the following command: `npm i pm2 -g`. Ensure pm2 automatically starts up when the server restarts.
+To launch the API, use: `npm run server:up`
+To refresh the API, use: `npm run server:restart`
+To shut down the API, use: `npm run server:down`
 
-To run the server locally, use the following command: `npm run dev`
-<br>On server: `npm run start`
+It's recommend to running the API with PM2. It allows you to keep your Node. js applications running continuously: PM2 can automatically restart your application if it crashes, and it can also automatically reload your application when you update your code
 
 ## Tech Stack
 

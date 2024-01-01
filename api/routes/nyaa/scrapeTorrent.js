@@ -5,7 +5,7 @@ const scrapeTorrent = (NYAA, torrent, $) => {
     .find("a:not(.comments)")
     .text()
     .trim();
-  const Magnet = $(torrent).find("a[href^=\"magnet:?xt=urn:btih\"]").attr("href");
+  const Magnet = $(torrent).find('a[href^="magnet:?xt=urn:btih"]').attr("href");
   const Size = $(torrent).find("td").eq(3).text().trim();
   const Seeders = parseInt($(torrent).find("td").eq(5).text().trim(), 10);
   const Leechers = parseInt($(torrent).find("td").eq(6).text().trim(), 10);
