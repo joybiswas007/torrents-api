@@ -9,7 +9,7 @@ const scrapeTorrent = (torrent, $) => {
     Size,
     Seeders,
     Leechers,
-    Magnet,
+    Magnet
   };
 };
 

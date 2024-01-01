@@ -5,27 +5,27 @@ const scrapedDataSchema = new mongoose.Schema(
   {
     Name: {
       type: String,
-      required: true,
+      required: true
     },
     Size: {
       type: String,
-      required: true,
+      required: true
     },
     Seeders: {
       type: Number,
-      required: true,
+      required: true
     },
     Leechers: {
       type: Number,
-      required: true,
+      required: true
     },
     Magnet: {
       type: String,
-      required: true,
+      required: true
     },
     Url: {
-      type: String,
-    },
+      type: String
+    }
   },
   schemaOptions
 );

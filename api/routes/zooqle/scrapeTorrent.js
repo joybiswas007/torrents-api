@@ -9,14 +9,14 @@ const scrapeTorrent = async (ZOOQLE, torrent, $, headers) => {
   const id = $(torrent).find("form input").attr("value");
   const page = await axios.post(`${ZOOQLE}/torrent-page/`, { id }, headers);
   const magnetLink = cheerio.load(page.data);
-  const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
+  const Magnet = magnetLink("a[href^=\"magnet:?xt=urn:btih\"]").attr("href");
 
   return {
     Name,
     Size,
     Seeders,
     Leechers,
-    Magnet,
+    Magnet
   };
 };
 

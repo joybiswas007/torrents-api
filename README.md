@@ -98,6 +98,7 @@ https://thekickasstorrents.to
 https://proxygalaxy.me
 
 ### Start server
+
 To run the server on your local machine, execute the following command: `npm run dev`
 <br>On the server, use: `npm run start`
 You also have the option to run it using `pm2`. If you don't have `pm2` installed, install it using the following command: `npm i pm2 -g`. Ensure pm2 automatically starts up when the server restarts.
@@ -117,6 +118,8 @@ The Torrents API is built using the following technologies:
 - Cheerio
 - dotenv
 - Mongoose
+- PM2
+- Winston
 
 ## Contributing
 

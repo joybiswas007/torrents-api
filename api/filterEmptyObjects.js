@@ -1,7 +1,7 @@
 // Filter torrents array and remove empty objects
-const filterEmptyObjects = (torrents) =>
+const filterEmptyObjects = torrents =>
   torrents.filter(
-    (torrent) =>
+    torrent =>
       torrent.Name !== undefined &&
       torrent.Name !== "" &&
       torrent.Magnet !== undefined &&

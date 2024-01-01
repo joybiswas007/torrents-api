@@ -1,5 +1,5 @@
 module.exports = {
   schemaOptions: {
-    timestamps: true,
-  },
+    timestamps: true
+  }
 };

@@ -14,7 +14,7 @@ const scrapeTorrent = (torrent, $) => {
     Seeders,
     Leechers,
     Url,
-    Magnet,
+    Magnet
   };
 };
 

@@ -20,7 +20,7 @@ const scrapeTorrent = async (TOR_LOCK, torrent, $) => {
     Seeders,
     Leechers,
     Url,
-    Magnet,
+    Magnet
   };
 };
 

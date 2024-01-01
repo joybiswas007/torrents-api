@@ -3,12 +3,13 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../../filterTorrents");
 const scrapeTorrent = require("./scrapeTorrent");
+const logger = require("../../../logger");
 
 const headers = {
   headers: {
     Cookie: process.env.PIRATEIRO_COOKIE,
-    "User-Agent": process.env.USER_AGENT,
-  },
+    "User-Agent": process.env.USER_AGENT
+  }
 };
 
 router.post("/", async (req, res) => {
@@ -26,6 +27,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
+    logger.error(error.message);
     res.status(500).send({ error: error.message });
   }
 });

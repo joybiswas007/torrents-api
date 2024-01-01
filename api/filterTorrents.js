@@ -4,12 +4,12 @@ const { Search } = require("../db/scrapeSchema");
 // If data is already present in db then don't save it just return the result
 
 const filterTorrents = (res, torrents) => {
-  const filteredTorrents = torrents.filter((torrent) => torrent.Seeders !== 0);
+  const filteredTorrents = torrents.filter(torrent => torrent.Seeders !== 0);
   if (filteredTorrents.length > 0) {
-    filteredTorrents.map(async (search) => {
+    filteredTorrents.map(async search => {
       const existingRecord = await Search.findOne({
         Name: search.Name,
-        Size: search.Size,
+        Size: search.Size
       });
       if (!existingRecord) {
         const scrape = new Search({
@@ -18,7 +18,7 @@ const filterTorrents = (res, torrents) => {
           Seeders: search.Seeders,
           Leechers: search.Leechers,
           Magnet: search.Magnet,
-          Url: search.Url,
+          Url: search.Url
         });
         await scrape.save();
       }

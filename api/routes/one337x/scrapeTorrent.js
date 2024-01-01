@@ -9,7 +9,7 @@ const scrapeTorrent = async (ONE337X, tr, $) => {
   const Size = $(tr).find(".coll-4.size").text().trim().replace(Seeders, "");
   const magnetPage = await axios.get(Url);
   const magnetLink = cheerio.load(magnetPage.data);
-  const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
+  const Magnet = magnetLink("a[href^=\"magnet:?xt=urn:btih\"]").attr("href");
 
   return {
     Name,
@@ -17,7 +17,7 @@ const scrapeTorrent = async (ONE337X, tr, $) => {
     Seeders,
     Leechers,
     Url,
-    Magnet,
+    Magnet
   };
 };
 

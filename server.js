@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const logger = require("./logger");
 
 const app = express();
 const port = process.env.PORT || 10000;
@@ -47,10 +48,10 @@ app.use("/search", search);
 
 app.get("*", (req, res) => {
   res.status(403).send({
-    error: `Method ${req.method} not allowed`,
+    error: `Method ${req.method} not allowed`
   });
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  logger.info(`Server running on port ${port}`);
 });

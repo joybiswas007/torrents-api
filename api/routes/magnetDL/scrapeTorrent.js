@@ -13,7 +13,7 @@ const scrapeTorrent = (MAGNET_DL, torrent, $) => {
     Seeders,
     Leechers,
     Url,
-    Magnet,
+    Magnet
   };
 };
 

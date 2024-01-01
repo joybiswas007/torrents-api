@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const { Search } = require("../../db/scrapeSchema");
+const logger = require("../../logger");
 
-const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escapeRegExp = string => string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 router.post("/", async (req, res) => {
   try {
@@ -16,6 +17,7 @@ router.post("/", async (req, res) => {
       res.status(404).send({ error: "No match found! Try again." });
     }
   } catch (error) {
+    logger.error(error.message);
     res.status(500).send({ error: error.message });
   }
 });

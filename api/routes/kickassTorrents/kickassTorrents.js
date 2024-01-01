@@ -4,6 +4,7 @@ const cheerio = require("cheerio");
 const filterTorrents = require("../../filterTorrents");
 const headers = require("../../headers");
 const scrapeTorrent = require("./scrapeTorrent");
+const logger = require("../../../logger");
 
 router.post("/", async (req, res) => {
   try {
@@ -21,6 +22,7 @@ router.post("/", async (req, res) => {
     }
     filterTorrents(res, torrents);
   } catch (error) {
+    logger.error(error.message);
     res.status(500).send({ error: error.message });
   }
 });

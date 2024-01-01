@@ -11,14 +11,14 @@ const scrapeTorrent = async (LIME_TORRENTS, torrent, $) => {
   const Url = `${LIME_TORRENTS}${torrentUrl}`;
   const magnetPage = await axios.get(Url);
   const magnetLink = cheerio.load(magnetPage.data);
-  const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
+  const Magnet = magnetLink("a[href^=\"magnet:?xt=urn:btih\"]").attr("href");
   return {
     Name,
     Size,
     Seeders,
     Leechers,
     Url,
-    Magnet,
+    Magnet
   };
 };
 

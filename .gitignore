@@ -1,3 +1,4 @@
 node_modules/
 .env
-.cache/*
+api-combine.log
+api-error.log
