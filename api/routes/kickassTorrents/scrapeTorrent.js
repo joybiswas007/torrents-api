@@ -10,11 +10,10 @@ const scrapeTorrent = async (KICKASS, torrent, $) => {
   const Size = $(torrent).find("td").eq(1).text().trim();
   const Seeders = parseInt($(torrent).find("td").eq(4).text().trim(), 10);
   const Leechers = parseInt($(torrent).find("td").eq(5).text().trim(), 10);
-  // eslint-disable-next-line no-await-in-loop
   const Url = `${KICKASS}${torrentUrl}`;
   const magnetPage = await axios.get(Url);
   const magnetLink = cheerio.load(magnetPage.data);
-  const Magnet = magnetLink("a[href^=\"magnet:?xt=urn:btih\"]").attr("href");
+  const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
   return {
     Name,
     Size,

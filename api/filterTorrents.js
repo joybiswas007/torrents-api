@@ -1,26 +1,37 @@
 const { Search } = require("../db/scrapeSchema");
 
-// Filter dead torrents and exclude them in results and save in DB
-// If data is already present in db then don't save it just return the result
-
 const filterTorrents = (res, torrents) => {
   const filteredTorrents = torrents.filter(torrent => torrent.Seeders !== 0);
   if (filteredTorrents.length > 0) {
     filteredTorrents.map(async search => {
-      const existingRecord = await Search.findOne({
-        Name: search.Name,
-        Size: search.Size
-      });
+      const { Name, Size, Seeders, Leechers, Magnet, Url } = search;
+      const existingRecord = await Search.findOne(
+        Url ? { Url } : { Name, Size }
+      );
       if (!existingRecord) {
-        const scrape = new Search({
-          Name: search.Name,
-          Size: search.Size,
-          Seeders: search.Seeders,
-          Leechers: search.Leechers,
-          Magnet: search.Magnet,
-          Url: search.Url
+        const data = new Search({
+          Name,
+          Size,
+          Seeders,
+          Leechers,
+          Magnet,
+          Url
         });
-        await scrape.save();
+        await data.save();
+      } else {
+        const updateFields = {};
+        if (existingRecord.Seeders !== Seeders) {
+          updateFields.Seeders = Seeders;
+        }
+        if (existingRecord.Leechers !== Leechers) {
+          updateFields.Leechers = Leechers;
+        }
+        if (Object.keys(updateFields).length > 0) {
+          await Search.updateOne(
+            { _id: existingRecord._id },
+            { $set: updateFields }
+          );
+        }
       }
     });
     res.status(202).send(filteredTorrents);

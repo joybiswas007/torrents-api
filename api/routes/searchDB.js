@@ -2,20 +2,21 @@ const router = require("express").Router();
 const { Search } = require("../../db/scrapeSchema");
 const logger = require("../../logger");
 
-const escapeRegExp = string => string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 router.post("/", async (req, res) => {
   try {
     const { search } = req.body;
-    const escapedUserInput = escapeRegExp(search);
-    const modifiedInput = escapedUserInput.replace(/[\s.]/g, "[\\s.]*");
-    const regex = new RegExp(`^${modifiedInput}`, "gi");
-    const query = await Search.find({ Name: regex });
+    const query = await Search.find({
+      Name: {
+        $regex: search,
+        $options: "i"
+      }
+    });
     if (query.length > 0) {
-      res.status(202).send(query);
-    } else {
-      res.status(404).send({ error: "No match found! Try again." });
+      return res.status(202).send({ statusCode: 200, query });
     }
+    res
+      .status(404)
+      .send({ statusCode: 404, error: "No match found! Try again." });
   } catch (error) {
     logger.error(error.message);
     res.status(500).send({ error: error.message });

@@ -16,13 +16,13 @@ router.post("/", async (req, res) => {
     const torrents = $("li.search-result")
       .map((i, torrent) => ({
         Name: $(torrent).find("h5 a").text().trim(),
-        Size: $(torrent).find("img[alt=\"Size\"]").parent().text().trim(),
+        Size: $(torrent).find('img[alt="Size"]').parent().text().trim(),
         Seeders: parseInt(
-          $(torrent).find("img[alt=\"Seeder\"]").parent().text().trim(),
+          $(torrent).find('img[alt="Seeder"]').parent().text().trim(),
           10
         ),
         Leechers: parseInt(
-          $(torrent).find("img[alt=\"Leecher\"]").parent().text().trim(),
+          $(torrent).find('img[alt="Leecher"]').parent().text().trim(),
           10
         ),
         Url: `${BIT_SEARCH}${$(torrent).find("h5 a").attr("href")}`,

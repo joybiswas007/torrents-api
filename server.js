@@ -2,15 +2,18 @@ require("dotenv").config();
 const express = require("express");
 
 const app = express();
+const helmet = require("helmet");
 const cors = require("cors");
 
 const logger = require("./logger");
 
-const port = process.env.PORT || 10000;
+const { PORT } = process.env;
+const port = PORT || 10000;
+
+app.use(helmet());
+app.disable("x-powered-by");
 app.use(express.json());
 app.use(cors());
-app.disable("x-powered-by");
-
 
 // Import routes
 const one337X = require("./api/routes/one337x/one337x");
@@ -59,4 +62,3 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
   logger.info(`Server running on port ${port}`);
 });
-
