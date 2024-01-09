@@ -11,7 +11,6 @@ const { PORT } = process.env;
 const port = PORT || 10000;
 
 app.use(helmet());
-app.disable("x-powered-by");
 app.use(express.json());
 app.use(cors());
 
