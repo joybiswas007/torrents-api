@@ -20,6 +20,7 @@ Unofficial public torrent trackers API written in Node.js.
 | /torrents/api/v1/anidex        | Anidex         | Anime    |
 | /torrents/api/v1/animetosho    | Anime Tosho    | Anime    |
 | /torrents/api/v1/torrentz2     | Torrentz2      | General  |
+| /torrents/api/v1/gktorrent     | GkTorrent      | General  |
 | /search                        | Search the DB  | Database |
 
 ## Usage
@@ -51,7 +52,7 @@ Navigate to the cloned directory
 
 Install dependencies: `npm install`
 
-Create a `.env` file inside the directory and fill in all the details.
+Create a `.env` or rename the `.env.sample` to `.env` file inside the directory and fill in all the details.
 
 Example `.env` file:
 
