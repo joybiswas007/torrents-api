@@ -11,16 +11,23 @@ router.post("/", async (req, res) => {
     const { search } = req.body;
     const encodedSearchString = encodeURIComponent(search);
     const searchUrl = `${GK_TORRENT}/recherche/${encodedSearchString}`;
-    const headers = {  headers: {
-      Cookie: GK_TORRENT_COOKIE,
-      'User-Agent': USER_AGENT
-    }};
+    const headers = {
+      headers: {
+        Cookie: GK_TORRENT_COOKIE,
+        "User-Agent": USER_AGENT
+      }
+    };
     const response = await axios.get(searchUrl, headers);
     const $ = cheerio.load(response.data);
     const $element = $("table tbody");
     const torrents = [];
     for (const torrent of $element.find("tr")) {
-      const torrentDetails = await scrapeTorrent(GK_TORRENT, torrent, $, headers);
+      const torrentDetails = await scrapeTorrent(
+        GK_TORRENT,
+        torrent,
+        $,
+        headers
+      );
       torrents.push(torrentDetails);
     }
     filterTorrents(res, torrents);
