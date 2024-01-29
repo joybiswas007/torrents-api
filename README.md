@@ -77,6 +77,8 @@ PIRATEIRO=https://pirateiro.com
 PIRATEIRO_COOKIE="cookies here"
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
+GK_TORRENT=https://www.gktorrent.wtf
+GK_TORRENT_COOKIE="Cookie here"
 ```
 
 Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user
@@ -88,6 +90,8 @@ search for something and get the Cookie value and save them in .env file.
 
 TorrentGalaxy shows captcha when you search for something. After completing the captcha open
 network tab and search for something and grab the Cookie value also make sure Cookie value includes `fencekey`
+
+Visit GkTorrent and open network tab and get the cookie from there.
 
 Use any user-agent you like.
 

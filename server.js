@@ -30,6 +30,7 @@ const nyaa = require("./api/routes/nyaa/nyaa");
 const anidex = require("./api/routes/anidex/anidex");
 const animeTosho = require("./api/routes/animeTosho/animeTosho");
 const torrentz2 = require("./api/routes/torrentz2/torrentz2");
+const gkTorrent = require("./api/routes/gkTorrent/gkTorrent");
 const search = require("./api/routes/searchDB");
 
 // Use routes
@@ -47,6 +48,7 @@ app.use("/torrents/api/v1/nyaa", nyaa);
 app.use("/torrents/api/v1/anidex", anidex);
 app.use("/torrents/api/v1/animetosho", animeTosho);
 app.use("/torrents/api/v1/torrentz2", torrentz2);
+app.use("/torrents/api/v1/gktorrent", gkTorrent);
 app.use("/search", search);
 
 app.get("*", (req, res) => {
