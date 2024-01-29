@@ -11,21 +11,21 @@
     "winston": "^3.11.0"
   },
   "name": "torrents-api",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
     "lint": "eslint . --ext .js --fix",
     "format": "prettier --write .",
-    "server:up": "pm2 start ecosystem.config.js",
-    "server:restart": "pm2 restart ecosystem.config.js",
-    "server:down": "pm2 delete ecosystem.config.js"
+    "server:up": "pm2 start api/configs/ecosystem.config.js",
+    "server:restart": "pm2 restart api/configs/ecosystem.config.js",
+    "server:down": "pm2 delete api/configs/ecosystem.config.js"
   },
   "keywords": [],
   "author": "joybiswas007",
   "license": "MIT",
-  "description": "Unofficial public torrent trackers API written in Express.js.",
+  "description": "Unofficial public torrent trackers API written in Node.js.",
   "devDependencies": {
     "eslint": "^8.55.0",
     "eslint-config-airbnb-base": "^15.0.0",

@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 const filterTorrents = require("../../utils/filterTorrents");
 const headers = require("../../utils/headers");
 const scrapeTorrent = require("./scrapeTorrent");
-const logger = require("../../config/logger");
+const logger = require("../../configs/logger");
 
 router.post("/", async (req, res) => {
   try {

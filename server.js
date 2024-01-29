@@ -5,7 +5,7 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 
-const logger = require("./api/config/logger");
+const logger = require("./api/configs/logger");
 
 const { PORT } = process.env;
 const port = PORT || 21000;
