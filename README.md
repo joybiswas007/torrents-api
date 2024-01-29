@@ -52,7 +52,8 @@ Navigate to the cloned directory
 
 Install dependencies: `npm install`
 
-Create a `.env` or rename the `.env.sample` to `.env` file inside the directory and fill in all the details.
+Create a `.env` or copy the `.env.sample` to `.env` using this command
+`cp .env.sample .env` file inside the directory and fill in all the details.
 
 Example `.env` file:
 
