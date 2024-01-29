@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { Search } = require("../../db/scrapeSchema");
-const logger = require("../../logger");
+const { Search } = require("../db/scrapeSchema");
+const logger = require("../config/logger");
 
 router.post("/", async (req, res) => {
   try {

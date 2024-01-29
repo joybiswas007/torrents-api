@@ -1,23 +1,27 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const filterTorrents = require("../../filterTorrents");
+const filterTorrents = require("../../utils/filterTorrents");
 const scrapeTorrent = require("./scrapeTorrent");
-const logger = require("../../../logger");
-
-const headers = {
-  headers: {
-    Cookie: process.env.PIRATEIRO_COOKIE,
-    "User-Agent": process.env.USER_AGENT
-  }
-};
+const logger = require("../../config/logger");
 
 router.post("/", async (req, res) => {
   try {
-    const { PIRATEIRO } = process.env;
+    const { PIRATEIRO, PIRATEIRO_COOKIE, USER_AGENT } = process.env;
     const { search } = req.body;
-    const searchUrl = `${PIRATEIRO}/search?query=${search}`;
-    const response = await axios.get(searchUrl, headers);
+    const headers = {
+      headers: {
+        Cookie: PIRATEIRO_COOKIE,
+        "User-Agent": USER_AGENT
+      }
+    };
+    const searchUrl = `${PIRATEIRO}/search`;
+    const response = await axios.get(searchUrl, {
+      params: {
+        query: search
+      },
+      headers
+    });
     const $ = cheerio.load(response.data);
     const $element = $("ul");
     const torrents = [];

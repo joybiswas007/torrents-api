@@ -5,24 +5,23 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 
-const logger = require("./logger");
+const logger = require("./api/config/logger");
 
 const { PORT } = process.env;
-const port = PORT || 10000;
+const port = PORT || 21000;
 
 app.use(helmet());
 app.use(express.json());
 app.use(cors());
 
 // Import routes
-const one337X = require("./api/routes/one337x/one337x");
+
 const bitsearch = require("./api/routes/bitSearch/bitsearch");
 const knaben = require("./api/routes/knaben/knaben");
 const torlock = require("./api/routes/torlock/torlock");
 const torrentGalaxy = require("./api/routes/torrentGalaxy/torrentGalaxy");
 const zooqle = require("./api/routes/zooqle/zooqle");
 const magnetdl = require("./api/routes/magnetDL/magnetDL");
-const kickassTorrents = require("./api/routes/kickassTorrents/kickassTorrents");
 const thePirateBay = require("./api/routes/thePirateBay/thePirateBay");
 const pirateiro = require("./api/routes/pirateiro/pirateiro");
 const gloTorrents = require("./api/routes/gloTorrents/gloTorrents");
@@ -34,14 +33,12 @@ const torrentz2 = require("./api/routes/torrentz2/torrentz2");
 const search = require("./api/routes/searchDB");
 
 // Use routes
-app.use("/torrents/api/v1/1337x", one337X);
 app.use("/torrents/api/v1/bitsearch", bitsearch);
 app.use("/torrents/api/v1/knaben", knaben);
 app.use("/torrents/api/v1/torlock", torlock);
 app.use("/torrents/api/v1/torrentgalaxy", torrentGalaxy);
 app.use("/torrents/api/v1/zooqle", zooqle);
 app.use("/torrents/api/v1/magnetdl", magnetdl);
-app.use("/torrents/api/v1/kickasstorrents", kickassTorrents);
 app.use("/torrents/api/v1/thepiratebay", thePirateBay);
 app.use("/torrents/api/v1/pirateiro", pirateiro);
 app.use("/torrents/api/v1/glotorrents", gloTorrents);

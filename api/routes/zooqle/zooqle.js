@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const filterTorrents = require("../../filterTorrents");
+const filterTorrents = require("../../utils/filterTorrents");
 const scrapeTorrent = require("./scrapeTorrent");
-const logger = require("../../../logger");
+const logger = require("../../config/logger");
 
 router.post("/", async (req, res) => {
   try {
@@ -17,9 +17,9 @@ router.post("/", async (req, res) => {
     };
     const response = await axios.post(
       `${ZOOQLE}/search/`,
-      {
+      new URLSearchParams({
         q: search
-      },
+      }),
       headers
     );
     const $ = cheerio.load(response.data);

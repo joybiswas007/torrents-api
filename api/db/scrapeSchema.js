@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_URI);
+const { MONGODB_URI } = process.env;
+
+mongoose.connect(MONGODB_URI);
 
 const Search = require("./models/scrapeModel");
 

@@ -1,30 +1,30 @@
 ## Torrents API
 
-Unofficial public torrent trackers API written in Express.js.
+Unofficial public torrent trackers API written in Node.js.
 
 ## Available routes
 
-| Route                            | Description     | Category |
-| -------------------------------- | --------------- | -------- |
-| /torrents/api/v1/1337x           | 1337x           | General  |
-| /torrents/api/v1/bitsearch       | Bitsearch       | General  |
-| /torrents/api/v1/torlock         | Torlock         | General  |
-| /torrents/api/v1/knaben          | Knaben          | General  |
-| /torrents/api/v1/torrentgalaxy   | TorrentGalaxy   | General  |
-| /torrents/api/v1/zooqle          | Zooqle          | General  |
-| /torrents/api/v1/magnetdl        | MagnetDL        | General  |
-| /torrents/api/v1/kickasstorrents | KickassTorrents | General  |
-| /torrents/api/v1/thepiratebay    | The Pirate Bay  | General  |
-| /torrents/api/v1/glotorrents     | GloTorrents     | General  |
-| /torrents/api/v1/limetorrents    | LimeTorrents    | General  |
-| /torrents/api/v1/pirateiro       | Pirateiro       | General  |
-| /torrents/api/v1/nyaa            | Nyaa            | Anime    |
-| /torrents/api/v1/anidex          | Anidex          | Anime    |
-| /torrents/api/v1/animetosho      | Anime Tosho     | Anime    |
-| /torrents/api/v1/torrentz2       | Torrentz2       | General  |
-| /search                          | Search the DB   | Database |
+| Route                          | Description    | Category |
+| ------------------------------ | -------------- | -------- |
+| /torrents/api/v1/bitsearch     | Bitsearch      | General  |
+| /torrents/api/v1/torlock       | Torlock        | General  |
+| /torrents/api/v1/knaben        | Knaben         | General  |
+| /torrents/api/v1/torrentgalaxy | TorrentGalaxy  | General  |
+| /torrents/api/v1/zooqle        | Zooqle         | General  |
+| /torrents/api/v1/magnetdl      | MagnetDL       | General  |
+| /torrents/api/v1/thepiratebay  | The Pirate Bay | General  |
+| /torrents/api/v1/glotorrents   | GloTorrents    | General  |
+| /torrents/api/v1/limetorrents  | LimeTorrents   | General  |
+| /torrents/api/v1/pirateiro     | Pirateiro      | General  |
+| /torrents/api/v1/nyaa          | Nyaa           | Anime    |
+| /torrents/api/v1/anidex        | Anidex         | Anime    |
+| /torrents/api/v1/animetosho    | Anime Tosho    | Anime    |
+| /torrents/api/v1/torrentz2     | Torrentz2      | General  |
+| /search                        | Search the DB  | Database |
 
 ## Usage
+
+requires Node version >=10.0.0
 
 Api doesn't show any dead torrents in search result.
 
@@ -57,10 +57,9 @@ Example `.env` file:
 
 ```
 NODE_ENV=production or development
-PORT=AnyPortYouLike //If NO port is set then port 10000 is used.
+PORT=10000
 USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 MONGODB_URI="add mongodb uri here"
-ONE337X=https://1337x.to
 BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
 TOR_LOCK=https://www.torlock.com
@@ -68,7 +67,6 @@ TORRENT_GALAXY=https://torrentgalaxy.mx
 TGX_COOKIE="Cookies here"
 ZOOQLE=https://zooqle.skin
 MAGNET_DL=https://www.magnetdl.com
-KICKASS=https://katcr.to
 TPB=https://pirateproxy.live
 GLO_TORRENTS=https://glodls.to
 NYAA=https://nyaa.si
@@ -94,7 +92,6 @@ network tab and search for something and grab the Cookie value also make sure Co
 Use any user-agent you like.
 
 Sites status page:
-https://thekickasstorrents.to
 https://proxygalaxy.me
 
 ### Start server
@@ -118,7 +115,6 @@ The Torrents API is built using the following technologies:
 - Cheerio
 - dotenv
 - Mongoose
-- PM2
 - Winston
 
 ## Contributing

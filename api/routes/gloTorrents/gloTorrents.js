@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const filterTorrents = require("../../filterTorrents");
-const filterEmptyObjects = require("../../filterEmptyObjects");
-const headers = require("../../headers");
+const filterTorrents = require("../../utils/filterTorrents");
+const filterEmptyObjects = require("../../utils/filterEmptyObjects");
+const headers = require("../../utils/headers");
 const scrapeTorrent = require("./scrapeTorrent");
-const logger = require("../../../logger");
+const logger = require("../../config/logger");
 
 router.post("/", async (req, res) => {
   try {
