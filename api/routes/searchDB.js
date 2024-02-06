@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
         $regex: search,
         $options: "i"
       }
-    });
+    }).select("_id Name Size Seeders Leechers Magnet Url");
     if (query.length > 0) {
       return res.status(202).send({ statusCode: 200, query });
     }
