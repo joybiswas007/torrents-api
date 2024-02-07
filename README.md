@@ -21,6 +21,7 @@ Unofficial public torrent trackers API written in Node.js.
 | /torrents/api/v1/animetosho    | Anime Tosho    | Anime    |
 | /torrents/api/v1/torrentz2     | Torrentz2      | General  |
 | /torrents/api/v1/gktorrent     | GkTorrent      | General  |
+| /torrents/api/v1/linuxtracker  | LinuxTracker   | Linux    |
 | /search                        | Search the DB  | Database |
 
 ## Usage
@@ -81,6 +82,7 @@ ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 GK_TORRENT=https://www.gktorrent.wtf
 GK_TORRENT_COOKIE="Cookie here"
+LINUX_TRACKER=https://linuxtracker.org
 ```
 
 Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user
