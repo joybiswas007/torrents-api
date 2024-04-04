@@ -57,7 +57,7 @@ Install dependencies: `npm install`
 Copy the `.env.sample` to `.env` using this command
 `cp .env.sample .env` file inside the directory and fill in all the details.
 
-Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user
+Added MongoDB support. Make sure to fill `MONGODB_URI`. NO data duplications. If a user
 search for something that is already present in db it won't be saved into db.
 
 1337x, Anidex and Pirateiro has some kind of protection enabled. To bypass that
