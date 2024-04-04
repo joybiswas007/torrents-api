@@ -54,38 +54,8 @@ Navigate to the cloned directory
 
 Install dependencies: `npm install`
 
-Create a `.env` or copy the `.env.sample` to `.env` using this command
+Copy the `.env.sample` to `.env` using this command
 `cp .env.sample .env` file inside the directory and fill in all the details.
-
-Example `.env` file:
-
-```
-NODE_ENV=production or development
-PORT=10000
-USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
-MONGODB_URI="add mongodb uri here"
-ONE337X=https://1337x.to
-ONE337X_COOKIE="Cookie here"
-BIT_SEARCH=https://bitsearch.to
-KNABEN=https://knaben.eu
-TOR_LOCK=https://www.torlock.com
-TORRENT_GALAXY=https://torrentgalaxy.mx
-TGX_COOKIE="Cookies here"
-ZOOQLE=https://zooqle.skin
-MAGNET_DL=https://www.magnetdl.com
-TPB=https://pirateproxy.live
-GLO_TORRENTS=https://glodls.to
-NYAA=https://nyaa.si
-ANIDEX=https://anidex.info
-ANIDEX_COOKIE="Cookies here"
-LIME_TORRENTS=https://www.limetorrents.lol
-PIRATEIRO=https://pirateiro.com
-PIRATEIRO_COOKIE="cookies here"
-ANIME_TOSHO=https://animetosho.org
-TORRENTZ2=https://torrentz2.nz
-GK_TORRENT=https://www.gktorrent.wtf
-LINUX_TRACKER=https://linuxtracker.org
-```
 
 Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user
 search for something that is already present in db it won't be saved into db.
