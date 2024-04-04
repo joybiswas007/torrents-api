@@ -1,4 +1,6 @@
-const scrapeTorrent = (MAGNET_DL, torrent, $) => {
+const { MAGNET_DL } = process.env;
+
+const scrapeTorrent = (torrent, $) => {
   const Name = $(torrent).find(".n a").attr("title");
   const findUrl = $(torrent).find(".n a").attr("href");
   const Url = `${MAGNET_DL}${findUrl}`;

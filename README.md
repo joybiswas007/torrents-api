@@ -6,6 +6,7 @@ Unofficial public torrent trackers API written in Node.js.
 
 | Route                          | Description    | Category |
 | ------------------------------ | -------------- | -------- |
+| /torrents/api/v1/1337x         | 1337x          | General  |
 | /torrents/api/v1/bitsearch     | Bitsearch      | General  |
 | /torrents/api/v1/torlock       | Torlock        | General  |
 | /torrents/api/v1/knaben        | Knaben         | General  |
@@ -63,6 +64,8 @@ NODE_ENV=production or development
 PORT=10000
 USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 MONGODB_URI="add mongodb uri here"
+ONE337X=https://1337x.to
+ONE337X_COOKIE="Cookie here"
 BIT_SEARCH=https://bitsearch.to
 KNABEN=https://knaben.eu
 TOR_LOCK=https://www.torlock.com
@@ -81,26 +84,18 @@ PIRATEIRO_COOKIE="cookies here"
 ANIME_TOSHO=https://animetosho.org
 TORRENTZ2=https://torrentz2.nz
 GK_TORRENT=https://www.gktorrent.wtf
-GK_TORRENT_COOKIE="Cookie here"
 LINUX_TRACKER=https://linuxtracker.org
 ```
 
 Added MongoDB support. Make sure to fill `MONGDB_URI`. NO data duplications. If a user
 search for something that is already present in db it won't be saved into db.
 
-Anidex and Pirateiro has some kind of protection enabled. To bypass that
+1337x, Anidex and Pirateiro has some kind of protection enabled. To bypass that
 need cookies from their sites. So, visit Anidex and Pirateiro open network tab
 search for something and get the Cookie value and save them in .env file.
 
 TorrentGalaxy shows captcha when you search for something. After completing the captcha open
 network tab and search for something and grab the Cookie value also make sure Cookie value includes `fencekey`
-
-Visit GkTorrent and open network tab and get the cookie from there.
-
-Use any user-agent you like.
-
-Sites status page:
-https://proxygalaxy.me
 
 ### Start server
 

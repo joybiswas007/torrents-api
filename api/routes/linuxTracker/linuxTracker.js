@@ -11,8 +11,7 @@ router.post("/", async (req, res) => {
   try {
     const { LINUX_TRACKER } = process.env;
     const { search } = req.body;
-    const searchUrl = `${LINUX_TRACKER}/index.php`;
-    const response = await axios.get(searchUrl, {
+    const response = await axios.get(`${LINUX_TRACKER}/index.php`, {
       params: {
         page: "torrents",
         search,
@@ -25,7 +24,7 @@ router.post("/", async (req, res) => {
     const $element = $("table").eq(12);
     const torrents = [];
     for (const torrent of $element.find("tr:not(:first-child)")) {
-      const torrentDetails = scrapeTorrent(LINUX_TRACKER, torrent, $);
+      const torrentDetails = scrapeTorrent(torrent, $);
       torrents.push(torrentDetails);
     }
     filterTorrents(res, filterEmptyObjects(torrents));

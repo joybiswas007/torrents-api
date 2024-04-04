@@ -1,6 +1,4 @@
-require("dotenv").config({ path: "../../.env" });
-
-const { USER_AGENT } = process.env;
+const { PIRATEIRO_COOKIE, USER_AGENT } = process.env;
 
 const headers = {
   "User-Agent": USER_AGENT,
@@ -11,6 +9,7 @@ const headers = {
   DNT: "1",
   "Sec-GPC": "1",
   Connection: "keep-alive",
+  Cookie: PIRATEIRO_COOKIE,
   "Upgrade-Insecure-Requests": "1",
   "Sec-Fetch-Dest": "document",
   "Sec-Fetch-Mode": "navigate",

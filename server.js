@@ -16,6 +16,7 @@ app.use(cors());
 
 // Import routes
 
+const one337x = require("./api/routes/one337x/one337x");
 const bitsearch = require("./api/routes/bitSearch/bitsearch");
 const knaben = require("./api/routes/knaben/knaben");
 const torlock = require("./api/routes/torlock/torlock");
@@ -35,6 +36,7 @@ const linuxTracker = require("./api/routes/linuxTracker/linuxTracker");
 const search = require("./api/routes/searchDB");
 
 // Use routes
+app.use("/torrents/api/v1/1337x", one337x);
 app.use("/torrents/api/v1/bitsearch", bitsearch);
 app.use("/torrents/api/v1/knaben", knaben);
 app.use("/torrents/api/v1/torlock", torlock);

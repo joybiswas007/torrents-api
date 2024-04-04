@@ -1,4 +1,6 @@
-const scrapeTorrent = (GLO_TORRENTS, torrent, $) => {
+const { GLO_TORRENTS } = process.env;
+
+const scrapeTorrent = (torrent, $) => {
   const Name = $(torrent).find("td").eq(1).find("a").eq(1).attr("title");
   const Magnet = $(torrent).find('a[href^="magnet:?xt=urn:btih"]').attr("href");
   const Size = $(torrent).find("td").eq(4).text().trim();

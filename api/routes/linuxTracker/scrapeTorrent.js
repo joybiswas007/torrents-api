@@ -1,4 +1,6 @@
-const scrapeTorrent = (LINUX_TRACKER, torrent, $) => {
+const { LINUX_TRACKER } = process.env;
+
+const scrapeTorrent = (torrent, $) => {
   const Name = $(torrent).find("td").eq(1).find("strong").eq(0).text().trim();
   const findUrl = $(torrent).find("td").eq(1).find("a").eq(0).attr("href");
   const Url = `${LINUX_TRACKER}/${findUrl}`;

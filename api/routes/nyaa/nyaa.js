@@ -10,13 +10,20 @@ router.post("/", async (req, res) => {
   try {
     const { NYAA } = process.env;
     const { search } = req.body;
-    const searchUrl = `${NYAA}/?q=${search}&f=0&c=0_0`;
-    const response = await axios.get(searchUrl, headers);
+
+    const response = await axios.get(`${NYAA}/`, {
+      params: {
+        f: "0",
+        c: "0_0",
+        q: search
+      },
+      headers
+    });
     const $ = cheerio.load(response.data);
     const $element = $("table tbody");
     const torrents = [];
     for (const torrent of $element.find("tr")) {
-      const torrentDetails = scrapeTorrent(NYAA, torrent, $);
+      const torrentDetails = scrapeTorrent(torrent, $);
       torrents.push(torrentDetails);
     }
     filterTorrents(res, torrents);

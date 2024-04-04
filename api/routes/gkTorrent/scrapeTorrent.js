@@ -1,7 +1,10 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const headers = require("../../utils/headers");
 
-const scrapeTorrent = async (GK_TORRENT, torrent, $, headers) => {
+const { GK_TORRENT } = process.env;
+
+const scrapeTorrent = async (torrent, $) => {
   const findUrl = $(torrent).find(".liste-accueil-nom a").attr("href");
   const Url = `${GK_TORRENT}${findUrl}`;
   const Name = $(torrent).find(".liste-accueil-nom").text();
@@ -14,7 +17,7 @@ const scrapeTorrent = async (GK_TORRENT, torrent, $, headers) => {
     $(torrent).find(".liste-accueil-clients").text().trim(),
     10
   );
-  const page = await axios.get(Url, headers);
+  const page = await axios.get(Url, { headers });
   const magnetData = cheerio.load(page.data);
   const Magnet = magnetData(".btn-magnet a").attr("href");
   return {

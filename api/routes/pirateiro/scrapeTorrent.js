@@ -1,7 +1,8 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const headers = require("./headers");
 
-const scrapeTorrent = async (torrent, $, headers) => {
+const scrapeTorrent = async (torrent, $) => {
   const Name = $(torrent).find(".pt-title").text().trim();
   const Seeders = parseInt($(torrent).find(".btn-seed-home").text().trim(), 10);
   const Leechers = parseInt(
@@ -10,7 +11,7 @@ const scrapeTorrent = async (torrent, $, headers) => {
   );
   const Url = $(torrent).attr("href");
 
-  const torrentPage = await axios.get(Url, headers);
+  const torrentPage = await axios.get(Url, { headers });
   const info = cheerio.load(torrentPage.data);
   const Size = info(".single-size").text().trim();
   const Magnet = info('a[href^="magnet:?xt=urn:btih"]').attr("href");

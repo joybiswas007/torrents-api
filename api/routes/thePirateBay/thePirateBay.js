@@ -10,8 +10,14 @@ router.post("/", async (req, res) => {
   try {
     const { TPB } = process.env;
     const { search } = req.body;
-    const searchUrl = `${TPB}/search/${search}/1/99/0`;
-    const response = await axios.get(searchUrl, headers);
+    const response = await axios.get(`${TPB}/s/`, {
+      params: {
+        q: search,
+        page: "0",
+        orderby: "99"
+      },
+      headers
+    });
     const $ = cheerio.load(response.data);
     const $element = $("table tbody");
     const torrents = [];

@@ -10,8 +10,12 @@ router.post("/", async (req, res) => {
   try {
     const { BIT_SEARCH } = process.env;
     const { search } = req.body;
-    const searchUrl = `${BIT_SEARCH}/search?q=${search}`;
-    const response = await axios.get(searchUrl, headers);
+    const response = await axios.get(`${BIT_SEARCH}/search`, {
+      params: {
+        q: search
+      },
+      headers
+    });
     const $ = cheerio.load(response.data);
     const torrents = $("li.search-result")
       .map((i, torrent) => ({

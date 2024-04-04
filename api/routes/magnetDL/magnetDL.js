@@ -21,12 +21,12 @@ router.post("/", async (req, res) => {
     const searchUrl = `${MAGNET_DL}/${search
       .toLowerCase()
       .substr(0, 1)}/${search.replace(/\s+/g, "-").toLowerCase()}/`;
-    const response = await axios.get(searchUrl, headers);
+    const response = await axios.get(searchUrl, { headers });
     const $ = cheerio.load(response.data);
     const torrents = [];
     const $element = $(".download tbody");
     for (const torrent of $element.find("tr")) {
-      const torrrentDetails = scrapeTorrent(MAGNET_DL, torrent, $);
+      const torrrentDetails = scrapeTorrent(torrent, $);
       torrents.push(torrrentDetails);
     }
     filterTorrents(res, filterEmptyObjects(torrents));

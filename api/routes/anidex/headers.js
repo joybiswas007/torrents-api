@@ -1,6 +1,4 @@
-require("dotenv").config({ path: "../../.env" });
-
-const { USER_AGENT } = process.env;
+const { ANIDEX, ANIDEX_COOKIE, USER_AGENT } = process.env;
 
 const headers = {
   "User-Agent": USER_AGENT,
@@ -11,6 +9,8 @@ const headers = {
   DNT: "1",
   "Sec-GPC": "1",
   Connection: "keep-alive",
+  Referer: `${ANIDEX}/`,
+  Cookie: ANIDEX_COOKIE,
   "Upgrade-Insecure-Requests": "1",
   "Sec-Fetch-Dest": "document",
   "Sec-Fetch-Mode": "navigate",

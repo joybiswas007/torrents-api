@@ -3,27 +3,27 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../../utils/filterTorrents");
 const scrapeTorrent = require("./scrapeTorrent");
+const headers = require("./headers");
 const logger = require("../../configs/logger");
 
 router.post("/", async (req, res) => {
   try {
-    const { TORRENT_GALAXY, TGX_COOKIE, USER_AGENT } = process.env;
+    const { TORRENT_GALAXY } = process.env;
     const { search } = req.body;
-    const searchUrl = `${TORRENT_GALAXY}/torrents.php`;
-    const response = await axios.get(searchUrl, {
+    const response = await axios.get(`${TORRENT_GALAXY}/torrents.php`, {
       params: {
-        search
+        search,
+        lang: 0,
+        nox: 2
       },
-      headers: {
-        Cookie: TGX_COOKIE,
-        "User-Agent": USER_AGENT
-      }
+      headers
     });
     const $ = cheerio.load(response.data);
     const torrentTable = $(".tgxtable");
+    console.log(torrentTable.html());
     const torrents = [];
     for (const torrent of torrentTable.find(".tgxtablerow")) {
-      const torrentDetails = scrapeTorrent(TORRENT_GALAXY, torrent, $);
+      const torrentDetails = scrapeTorrent(torrent, $);
       torrents.push(torrentDetails);
     }
     filterTorrents(res, torrents);

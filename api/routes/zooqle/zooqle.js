@@ -3,30 +3,28 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const filterTorrents = require("../../utils/filterTorrents");
 const scrapeTorrent = require("./scrapeTorrent");
+const headers = require("../../utils/headers");
 const logger = require("../../configs/logger");
 
 router.post("/", async (req, res) => {
   try {
-    const { ZOOQLE, USER_AGENT } = process.env;
+    const { ZOOQLE } = process.env;
     const { search } = req.body;
-    const headers = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "User-Agent": USER_AGENT
-      }
-    };
+
     const response = await axios.post(
       `${ZOOQLE}/search/`,
       new URLSearchParams({
         q: search
       }),
-      headers
+      {
+        headers
+      }
     );
     const $ = cheerio.load(response.data);
     const $element = $("section table tbody");
     const torrents = [];
     for (const torrent of $element.find("tr")) {
-      const torrentDetails = await scrapeTorrent(ZOOQLE, torrent, $, headers);
+      const torrentDetails = await scrapeTorrent(torrent, $);
       torrents.push(torrentDetails);
     }
 

@@ -1,4 +1,6 @@
-const scrapeTorrent = (NYAA, torrent, $) => {
+const { NYAA } = process.env;
+
+const scrapeTorrent = (torrent, $) => {
   const Name = $(torrent)
     .find("td")
     .eq(1)

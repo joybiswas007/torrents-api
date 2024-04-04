@@ -1,4 +1,6 @@
-const scrapeTorrent = (ANIDEX, torrent, $) => {
+const { ANIDEX } = process.env;
+
+const scrapeTorrent = (torrent, $) => {
   const findUrl = $(torrent).find(".torrent").attr("href");
   const Url = `${ANIDEX}${findUrl}`;
   const Name = $(torrent).find(".torrent .span-1440").attr("title");

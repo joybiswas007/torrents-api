@@ -1,7 +1,10 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const headers = require("../../utils/headers");
 
-const scrapeTorrent = async (ZOOQLE, torrent, $, headers) => {
+const { ZOOQLE } = process.env;
+
+const scrapeTorrent = async (torrent, $) => {
   const Name = $(torrent).find("a").text().trim();
   const Size = $(torrent).find("td").eq(1).text().trim();
   const Seeders = parseInt($(torrent).find("td").eq(2).text().trim(), 10);
@@ -12,7 +15,9 @@ const scrapeTorrent = async (ZOOQLE, torrent, $, headers) => {
     new URLSearchParams({
       id
     }),
-    headers
+    {
+      headers
+    }
   );
   const magnetLink = cheerio.load(page.data);
   const Magnet = magnetLink('a[href^="magnet:?xt=urn:btih"]').attr("href");
