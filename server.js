@@ -33,6 +33,7 @@ const animeTosho = require("./api/routes/animeTosho/animeTosho");
 const torrentz2 = require("./api/routes/torrentz2/torrentz2");
 const gkTorrent = require("./api/routes/gkTorrent/gkTorrent");
 const linuxTracker = require("./api/routes/linuxTracker/linuxTracker");
+const rutor = require("./api/routes/rutor/rutor");
 const search = require("./api/routes/searchDB");
 
 // Use routes
@@ -53,6 +54,7 @@ app.use("/torrents/api/v1/animetosho", animeTosho);
 app.use("/torrents/api/v1/torrentz2", torrentz2);
 app.use("/torrents/api/v1/gktorrent", gkTorrent);
 app.use("/torrents/api/v1/linuxtracker", linuxTracker);
+app.use("/torrents/api/v1/rutor", rutor);
 app.use("/search", search);
 
 app.get("*", (req, res) => {

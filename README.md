@@ -23,6 +23,7 @@ Unofficial public torrent trackers API written in Node.js.
 | /torrents/api/v1/torrentz2     | Torrentz2      | General  |
 | /torrents/api/v1/gktorrent     | GkTorrent      | General  |
 | /torrents/api/v1/linuxtracker  | LinuxTracker   | Linux    |
+| /torrents/api/v1/rutor         | rutor          | General  |
 | /search                        | Search the DB  | Database |
 
 ## Usage
