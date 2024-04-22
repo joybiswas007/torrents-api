@@ -39,7 +39,7 @@ Payload examples:
 method: POST
 Content-Type: application/json
 
-{
+{   "page": 1 // this field is optional (page data type is number)
     "search": "search query"
 }
 ```
@@ -48,6 +48,16 @@ On Knaben's few search results you'll see
 `https://knaben.eu/live/dl/rutracker/?` this types of links
 well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
+
+## Pagination Supported Routes
+- bitsearch
+- knaben
+- limetorrents
+- nyaa
+- 1337x
+- rutor
+
+
 
 ## Requirements
 
