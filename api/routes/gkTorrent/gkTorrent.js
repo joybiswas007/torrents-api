@@ -8,11 +8,11 @@ const logger = require("../../configs/logger");
 
 router.post("/", async (req, res) => {
   try {
+    const startTime = new Date();
     const { GK_TORRENT } = process.env;
     const { search } = req.body;
     const encodedSearchString = encodeURIComponent(search);
     const searchUrl = `${GK_TORRENT}/recherche/${encodedSearchString}`;
-
     const response = await axios.get(searchUrl, { headers });
     const $ = cheerio.load(response.data);
     const $element = $("table tbody");
@@ -21,10 +21,14 @@ router.post("/", async (req, res) => {
       const torrentDetails = await scrapeTorrent(torrent, $);
       torrents.push(torrentDetails);
     }
-    filterTorrents(res, torrents);
+    const endTime = new Date();
+    // Time taken in milliseconds
+    const timeTaken = endTime - startTime;
+
+    filterTorrents(res, 1, timeTaken, torrents);
   } catch (error) {
-    logger.error(error);
-    res.status(500).send({ error: error.message });
+    logger.error(error.message);
+    res.status(500).send({ statusCode: 500, error: error.message });
   }
 });
 

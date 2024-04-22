@@ -8,16 +8,25 @@ const logger = require("../../configs/logger");
 
 router.post("/", async (req, res) => {
   try {
+    const startTime = new Date();
     const { BIT_SEARCH } = process.env;
-    const { search } = req.body;
+    const { page = 1, search } = req.body;
     const response = await axios.get(`${BIT_SEARCH}/search`, {
       params: {
-        q: search
+        q: search,
+        page
       },
       headers
     });
     const $ = cheerio.load(response.data);
-    const torrents = $("li.search-result")
+    const $element = $("li.search-result");
+    const totalPages = $(".search-stats span").find("b").eq(0).text();
+    let pageCount = 1;
+    if (totalPages) {
+      pageCount = parseInt(totalPages, 10);
+      pageCount = parseInt((pageCount / $element.length).toFixed(), 10);
+    }
+    const torrents = $element
       .map((i, torrent) => ({
         Name: $(torrent).find("h5 a").text().trim(),
         Size: $(torrent).find('img[alt="Size"]').parent().text().trim(),
@@ -33,10 +42,15 @@ router.post("/", async (req, res) => {
         Magnet: $(torrent).find(".links a.dl-magnet").attr("href")
       }))
       .get();
-    filterTorrents(res, filterEmptyObjects(torrents));
+
+    const endTime = new Date();
+    // Time taken in milliseconds
+    const timeTaken = endTime - startTime;
+
+    filterTorrents(res, pageCount, timeTaken, filterEmptyObjects(torrents));
   } catch (error) {
     logger.error(error.message);
-    res.status(500).send({ error: error.message });
+    res.status(500).send({ statusCode: 500, error: error.message });
   }
 });
 

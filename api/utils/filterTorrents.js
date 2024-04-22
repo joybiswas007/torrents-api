@@ -1,6 +1,6 @@
 const { Search } = require("../db/scrapeSchema");
 
-const filterTorrents = (res, torrents) => {
+const filterTorrents = (res, pageCount, timeTaken, torrents) => {
   const filteredTorrents = torrents.filter(torrent => torrent.Seeders !== 0);
   if (filteredTorrents.length > 0) {
     filteredTorrents.map(async search => {
@@ -34,9 +34,14 @@ const filterTorrents = (res, torrents) => {
         }
       }
     });
-    res.status(202).send(filteredTorrents);
+    res.status(200).send({
+      statusCode: 200,
+      pages: pageCount,
+      timeTaken: `${timeTaken} ms`,
+      torrents: filteredTorrents
+    });
   } else {
-    res.status(404).send({ error: "No magnets found :(" });
+    res.status(404).send({ statusCode: 404, error: "No magnets found :(" });
   }
 };
 

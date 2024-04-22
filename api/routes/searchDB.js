@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
       .send({ statusCode: 404, error: "No match found! Try again." });
   } catch (error) {
     logger.error(error.message);
-    res.status(500).send({ error: error.message });
+    res.status(500).send({ statusCode: 500, error: error.message });
   }
 });
 

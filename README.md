@@ -61,8 +61,8 @@ Copy the `.env.sample` to `.env` using this command
 Added MongoDB support. Make sure to fill `MONGODB_URI`. NO data duplications. If a user
 search for something that is already present in db it won't be saved into db.
 
-1337x, Anidex and Pirateiro has some kind of protection enabled. To bypass that
-need cookies from their sites. So, visit Anidex and Pirateiro open network tab
+1337x, Anidex, MagnetDL and Pirateiro has protection enabled. To bypass that
+need cookies from their sites. So, visit these sites and open network tab
 search for something and get the Cookie value and save them in .env file.
 
 TorrentGalaxy shows captcha when you search for something. After completing the captcha open
