@@ -59,7 +59,15 @@ app.use("/search", search);
 
 app.get("*", (req, res) => {
   res.status(403).send({
+    statuseCode: 403,
     error: `Method ${req.method} not allowed`
+  });
+});
+
+app.post("*", (req, res) => {
+  res.status(400).send({
+    statuseCode: 400,
+    error: "Bad request"
   });
 });
 

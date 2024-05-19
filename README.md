@@ -50,14 +50,13 @@ well fret NOT just add them to your client and it'll automatically
 starts downloading like other magnet urls.
 
 ## Pagination Supported Routes
+
 - bitsearch
 - knaben
 - limetorrents
 - nyaa
 - 1337x
 - rutor
-
-
 
 ## Requirements
 

@@ -11,7 +11,7 @@
     "winston": "^3.11.0"
   },
   "name": "torrents-api",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -22,7 +22,13 @@
     "server:restart": "pm2 restart api/configs/ecosystem.config.js",
     "server:down": "pm2 delete api/configs/ecosystem.config.js"
   },
-  "keywords": [],
+  "keywords": [
+    "torrents",
+    "scraping",
+    "api",
+    "nodejs",
+    "bittorrent"
+  ],
   "author": "joybiswas007",
   "license": "MIT",
   "description": "Unofficial public torrent trackers API written in Node.js.",

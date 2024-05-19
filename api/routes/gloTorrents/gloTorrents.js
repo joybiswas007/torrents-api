@@ -15,7 +15,13 @@ router.post("/", async (req, res) => {
     const response = await axios.get(`${GLO_TORRENTS}/search_results.php`, {
       params: {
         search,
-        incldead: "Search"
+        cat: "0",
+        incldead: "0",
+        inclexternal: "0",
+        lang: "0",
+        sort: "id",
+        order: "desc"
+        // page: page > 1 ? page - 1 : page
       },
       headers
     });
