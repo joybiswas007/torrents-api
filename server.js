@@ -15,51 +15,16 @@ app.use(express.json());
 app.use(cors());
 
 // Import routes
-
-const one337x = require("./api/routes/one337x/one337x");
-const bitsearch = require("./api/routes/bitSearch/bitsearch");
-const knaben = require("./api/routes/knaben/knaben");
-const torlock = require("./api/routes/torlock/torlock");
-const torrentGalaxy = require("./api/routes/torrentGalaxy/torrentGalaxy");
-const zooqle = require("./api/routes/zooqle/zooqle");
-const magnetdl = require("./api/routes/magnetDL/magnetDL");
-const thePirateBay = require("./api/routes/thePirateBay/thePirateBay");
-const pirateiro = require("./api/routes/pirateiro/pirateiro");
-const gloTorrents = require("./api/routes/gloTorrents/gloTorrents");
-const limeTorrents = require("./api/routes/limeTorrents/limeTorrents");
-const nyaa = require("./api/routes/nyaa/nyaa");
-const anidex = require("./api/routes/anidex/anidex");
-const animeTosho = require("./api/routes/animeTosho/animeTosho");
-const torrentz2 = require("./api/routes/torrentz2/torrentz2");
-const gkTorrent = require("./api/routes/gkTorrent/gkTorrent");
-const linuxTracker = require("./api/routes/linuxTracker/linuxTracker");
-const rutor = require("./api/routes/rutor/rutor");
+const routes = require("./api/routes/routes");
 const search = require("./api/routes/searchDB");
 
 // Use routes
-app.use("/torrents/api/v1/1337x", one337x);
-app.use("/torrents/api/v1/bitsearch", bitsearch);
-app.use("/torrents/api/v1/knaben", knaben);
-app.use("/torrents/api/v1/torlock", torlock);
-app.use("/torrents/api/v1/torrentgalaxy", torrentGalaxy);
-app.use("/torrents/api/v1/zooqle", zooqle);
-app.use("/torrents/api/v1/magnetdl", magnetdl);
-app.use("/torrents/api/v1/thepiratebay", thePirateBay);
-app.use("/torrents/api/v1/pirateiro", pirateiro);
-app.use("/torrents/api/v1/glotorrents", gloTorrents);
-app.use("/torrents/api/v1/limetorrents", limeTorrents);
-app.use("/torrents/api/v1/nyaa", nyaa);
-app.use("/torrents/api/v1/anidex", anidex);
-app.use("/torrents/api/v1/animetosho", animeTosho);
-app.use("/torrents/api/v1/torrentz2", torrentz2);
-app.use("/torrents/api/v1/gktorrent", gkTorrent);
-app.use("/torrents/api/v1/linuxtracker", linuxTracker);
-app.use("/torrents/api/v1/rutor", rutor);
+app.use("/torrents/api/v1", routes);
 app.use("/search", search);
 
 app.get("*", (req, res) => {
-  res.status(403).send({
-    statuseCode: 403,
+  res.status(405).send({
+    statuseCode: 405,
     error: `Method ${req.method} not allowed`
   });
 });
